@@ -1,4 +1,4 @@
-const CACHE_NAME = 'iuran-v1';
+const CACHE_NAME = 'iuran-v2';
 const urlsToCache = [
   './',
   './index.html',
