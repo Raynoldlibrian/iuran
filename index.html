@@ -50,7 +50,10 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
 .stat-card{background:white;border-radius:16px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.03)}
 .stat-label{font-size:10px;font-weight:700;letter-spacing:0.025em;color:rgba(6,95,70,0.6);text-transform:uppercase;margin-bottom:4px}
+.stat-label.red{color:rgba(220,38,38,0.6)}
 .stat-amount{font-weight:800;font-size:18px;color:#0f172a;line-height:1.25}
+.stat-amount.green{color:#065f46}
+.stat-amount.red{color:#dc2626}
 .stat-footer{margin-top:8px;display:flex;align-items:center;gap:4px;font-size:11px;color:#71717a}
 .stat-footer b{color:#3f3f46;font-weight:600}
 .progress-card{background:white;border-radius:20px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.03);margin-bottom:16px}
@@ -69,7 +72,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .action-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
 .action-btn{background:white;border-radius:16px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.03);cursor:pointer;transition:background 0.2s;font-family:inherit}
 .action-btn:hover{background:#fafafa}
-.action-btn.doorprize{box-shadow:0 8px 20px rgba(251,191,36,0.35);border:1px solid rgba(251,191,36,0.2);background:#fbbf24}
+.action-btn.doorprize{background:#fbbf24;box-shadow:0 8px 20px rgba(251,191,36,0.35);border:1px solid rgba(251,191,36,0.2)}
 .action-btn.doorprize:hover{filter:brightness(1.05)}
 .action-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1)}
 .action-icon svg{width:20px;height:20px;stroke:white;fill:none;stroke-width:2}
@@ -79,6 +82,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .action-icon.amber svg{stroke:#fbbf24}
 .action-label{font-size:11px;font-weight:600;color:#0f172a;line-height:1.25;text-align:center}
 .action-sub{font-size:10px;font-weight:400;color:#71717a}
+.action-btn.doorprize .action-sub{font-weight:600;color:rgba(15,23,42,0.7)}
 .activity-list{display:flex;flex-direction:column;gap:10px}
 .activity-item{display:flex;align-items:center;gap:12px}
 .activity-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -101,12 +105,12 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .member-status{font-size:11px;color:#71717a;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .member-doorprize-badge{padding:2px 6px;border-radius:9999px;background:#fef3c7;color:#b45309;font-size:9px;font-weight:700}
 .member-actions{display:flex;align-items:center;gap:8px}
-.member-chevron{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.25s ease}
-.member-chevron svg{width:16px;height:16px;stroke:#71717a;fill:none;stroke-width:2}
-.member-chevron.rotated{transform:rotate(180deg)}
 .checkbox-wrap{display:flex;align-items:center;gap:4px;font-size:11px;color:#71717a}
 .delete-btn{width:28px;height:28px;border-radius:50%;background:white;border:1px solid #e4e4e7;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .delete-btn svg{width:14px;height:14px;stroke:#71717a;fill:none;stroke-width:2}
+.member-chevron{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.25s ease}
+.member-chevron svg{width:16px;height:16px;stroke:#71717a;fill:none;stroke-width:2}
+.member-chevron.rotated{transform:rotate(180deg)}
 .month-grid-container{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
 .month-grid-container.open{max-height:500px}
 .month-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding-top:12px}
@@ -117,7 +121,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .month-btn-check{font-size:10px}
 .kas-list{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding-right:4px}
 .kas-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;border:1px solid #f4f4f5}
-.kas-info{flex:1}
+.kas-info{flex:1;min-width:0}
 .kas-note{font-size:12px;font-weight:600;color:#0f172a}
 .kas-meta{font-size:11px;color:#71717a}
 .kas-amount-wrap{text-align:right}
@@ -125,6 +129,22 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .kas-amount.masuk{color:#065f46}
 .kas-amount.keluar{color:#dc2626}
 .kas-member{font-size:10px;color:#a1a1aa}
+.breakdown-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#0f172a;padding:6px 0}
+.breakdown-row span{color:#71717a}
+.breakdown-row b{font-weight:700}
+.breakdown-row b.green{color:#065f46}
+.breakdown-row b.red{color:#dc2626}
+.breakdown-row.total{border-top:1px solid #e4e4e7;margin-top:6px;padding-top:12px;font-size:13px}
+.breakdown-row.total span{color:#0f172a;font-weight:700}
+.breakdown-note{margin-top:10px;font-size:10px;color:#a1a1aa;line-height:1.5}
+.filter-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.filter-select{width:100%;border-radius:12px;border:1px solid #e4e4e7;padding:10px 6px;font-size:11px;font-weight:600;background:white;font-family:inherit;outline:none;cursor:pointer}
+.filter-select:focus{box-shadow:0 0 0 2px rgba(6,95,70,0.2)}
+.filter-summary{margin-top:12px;font-size:11px;color:#71717a;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.filter-summary b.green{color:#065f46}
+.filter-summary b.red{color:#dc2626}
+.filter-reset{border:none;background:#f4f4f5;border-radius:9999px;padding:4px 10px;font-size:10px;font-weight:700;color:#0f172a;cursor:pointer;font-family:inherit}
+.filter-reset:hover{background:#e4e4e7}
 .doorprize-card{background:white;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.03);text-align:center;margin-bottom:16px}
 .doorprize-icon-wrap{width:64px;height:64px;border-radius:50%;background:#fef3c7;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
 .doorprize-icon-wrap svg{width:32px;height:32px;stroke:#f59e0b;fill:none;stroke-width:2}
@@ -177,6 +197,14 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .info-box-title{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;font-weight:700}
 .info-box-title svg{width:16px;height:16px;stroke:#065f46;fill:none;stroke-width:2}
 .info-box-text{font-size:11px;color:#71717a;line-height:1.625}
+.add-member-row{display:flex;gap:8px;margin-bottom:16px}
+.add-member-input{flex:1;border-radius:9999px;border:1px solid #e4e4e7;padding:10px 16px;font-size:13px;outline:none;font-family:inherit}
+.add-member-input:focus{box-shadow:0 0 0 2px rgba(6,95,70,0.2)}
+.add-member-btn{width:40px;height:40px;border-radius:50%;background:#065f46;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.add-member-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+.hint-text{font-size:10px;color:#a1a1aa;text-align:center;margin-top:8px}
+.btn-import{background:#f59e0b;color:#0f172a}
+.btn-import:hover{filter:brightness(1.05)}
 .doorprize-modal{width:100%;max-width:360px;background:#fdf6ec;border-radius:28px;padding:24px;text-align:center;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.5);position:relative;overflow:hidden}
 .doorprize-big-icon{width:80px;height:80px;border-radius:50%;background:#fbbf24;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(251,191,36,0.4)}
 .doorprize-big-icon svg{width:40px;height:40px;stroke:#0f172a;fill:none;stroke-width:2}
@@ -201,17 +229,10 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .btn-mark{margin-top:12px;width:100%;padding:12px;border-radius:9999px;background:#065f46;color:white;font-weight:700;font-size:13px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-family:inherit}
 .btn-mark svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
 .error-text{margin-top:12px;font-size:11px;color:#ef4444}
-.add-member-row{display:flex;gap:8px;margin-bottom:16px}
-.add-member-input{flex:1;border-radius:9999px;border:1px solid #e4e4e7;padding:10px 16px;font-size:13px;outline:none;font-family:inherit}
-.add-member-input:focus{box-shadow:0 0 0 2px rgba(6,95,70,0.2)}
-.add-member-btn{width:40px;height:40px;border-radius:50%;background:#065f46;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.add-member-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
-.btn-import{background:#f59e0b;color:#0f172a}
-.btn-import:hover{filter:brightness(1.05)}
 .hidden{display:none!important}
 .space-y>*+*{margin-top:16px}
-.hint-text{font-size:10px;color:#a1a1aa;text-align:center;margin-top:8px}
 @media(min-width:640px){.modal-overlay{align-items:center;padding:16px}.modal{border-radius:28px}}
+@media(max-width:400px){.filter-row{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -268,6 +289,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
   </div>
 
   <div class="content">
+    <!-- DASHBOARD -->
     <div class="page active" id="page-dashboard">
       <div class="stats-grid">
         <div class="stat-card">
@@ -321,6 +343,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
       </div>
     </div>
 
+    <!-- ANGGOTA -->
     <div class="page" id="page-anggota">
       <div class="card">
         <h3 class="card-title">
@@ -338,7 +361,66 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
       </div>
     </div>
 
+    <!-- KAS (BARU: statcard + filter) -->
     <div class="page" id="page-kas">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Pemasukan</div>
+          <div class="stat-amount green" id="kasTotalMasuk">Rp 0</div>
+          <div class="stat-footer"><span id="kasCountMasuk">0 transaksi</span><span>• semua waktu</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label red">Total Pengeluaran</div>
+          <div class="stat-amount red" id="kasTotalKeluar">Rp 0</div>
+          <div class="stat-footer"><span id="kasCountKeluar">0 transaksi</span><span>• semua waktu</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+          Asal Saldo Saat Ini
+        </div>
+        <div class="breakdown-row"><span>Total Pemasukan</span><b class="green" id="bdMasuk">Rp 0</b></div>
+        <div class="breakdown-row"><span>Saldo Awal (pengaturan)</span><b id="bdSaldoAwal">Rp 0</b></div>
+        <div class="breakdown-row"><span>Total Pengeluaran</span><b class="red" id="bdKeluar">Rp 0</b></div>
+        <div class="breakdown-row total"><span>= Saldo Saat Ini</span><b class="green" id="bdSaldo">Rp 0</b></div>
+        <p class="breakdown-note">Rumus: Pemasukan + Saldo Awal − Pengeluaran = Saldo. Semua angka kumulatif lintas tahun.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          Filter Riwayat
+        </div>
+        <div class="filter-row">
+          <select class="filter-select" id="filterJenis">
+            <option value="semua">Semua Jenis</option>
+            <option value="masuk">Pemasukan</option>
+            <option value="keluar">Pengeluaran</option>
+          </select>
+          <select class="filter-select" id="filterBulan">
+            <option value="all">Semua Bulan</option>
+            <option value="01">Januari</option>
+            <option value="02">Februari</option>
+            <option value="03">Maret</option>
+            <option value="04">April</option>
+            <option value="05">Mei</option>
+            <option value="06">Juni</option>
+            <option value="07">Juli</option>
+            <option value="08">Agustus</option>
+            <option value="09">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Desember</option>
+          </select>
+          <select class="filter-select" id="filterTahun">
+            <option value="all">Semua Tahun</option>
+          </select>
+        </div>
+        <div class="filter-summary" id="filterSummary"></div>
+      </div>
+
       <div class="card">
         <h3 class="card-title">
           <svg viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
@@ -348,6 +430,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
       </div>
     </div>
 
+    <!-- DOORPRIZE -->
     <div class="page" id="page-doorprize">
       <div class="doorprize-card">
         <div class="doorprize-icon-wrap"><svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
@@ -361,6 +444,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
       </div>
     </div>
 
+    <!-- LAPORAN -->
     <div class="page" id="page-laporan">
       <div class="card">
         <h3 class="card-title">
@@ -382,17 +466,14 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
           <div class="report-row"><span>Keluar <span id="reportYear2">2026</span></span><b id="reportKeluar">Rp 0</b></div>
           <div class="report-row total"><span>Sisa Saldo</span><b class="report-value" id="reportSaldo">Rp 0</b></div>
         </div>
-        <button class="btn-primary dark" id="btnExport"> Export Laporan (TXT)</button>
+        <button class="btn-primary dark" id="btnExport">📄 Export Laporan (TXT)</button>
         <p style="font-size:10px;color:#a1a1aa;margin-top:8px;text-align:center">Download laporan teks untuk arsip bendahara</p>
-        
         <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e4e4e7">
           <h4 style="font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px">
             <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:#065f46;fill:none;stroke-width:2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Backup & Restore Data
           </h4>
-          <p style="font-size:11px;color:#71717a;margin-bottom:12px;line-height:1.5">
-            Export data untuk backup atau kirim ke ketua/bendahara lain. Import untuk melanjutkan pencatatan dari data yang diterima.
-          </p>
+          <p style="font-size:11px;color:#71717a;margin-bottom:12px;line-height:1.5">Export data untuk backup atau kirim ke ketua/bendahara lain. Import untuk melanjutkan pencatatan dari data yang diterima.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
             <button class="btn-primary" id="btnExportJson">💾 Export JSON</button>
             <button class="btn-primary btn-import" id="btnImportJson">📥 Import JSON</button>
@@ -428,7 +509,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
   </div>
 </div>
 
-<!-- Settings Modal -->
+<!-- MODAL PENGATURAN -->
 <div class="modal-overlay" id="modalSettings">
   <div class="modal">
     <div class="modal-header">
@@ -478,7 +559,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
   </div>
 </div>
 
-<!-- Add Iuran Modal -->
+<!-- MODAL TAMBAH IURAN -->
 <div class="modal-overlay" id="modalIuran">
   <div class="modal white">
     <div class="modal-header">
@@ -519,7 +600,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
   </div>
 </div>
 
-<!-- Add Keluar Modal -->
+<!-- MODAL PENGELUARAN -->
 <div class="modal-overlay" id="modalKeluar">
   <div class="modal white">
     <div class="modal-header">
@@ -549,7 +630,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
   </div>
 </div>
 
-<!-- Doorprize Modal -->
+<!-- MODAL DOORPRIZE -->
 <div class="modal-overlay center" id="modalDoorprize">
   <div class="doorprize-modal">
     <button class="close-btn" style="position:absolute;top:16px;right:16px" onclick="closeDoorprize()">
@@ -582,167 +663,103 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 const STORAGE_KEY = 'iuran-senam-data-v3';
 const BG_KEY = 'iuran-hero-bg-v3';
 
-const defaultConfig = {
-  groupName: '',
-  iuranPerBulan: 0,
-  saldoAwal: 0,
-  bulanAwal: ''
-};
+const defaultConfig = { groupName: '', iuranPerBulan: 10000, saldoAwal: 0, bulanAwal: '' };
 
 let config = { ...defaultConfig };
 let members = [];
 let transactions = [];
 let heroBg = '';
-let expandedMembers = new Set(); // Track expanded member cards
+let expandedMembers = new Set();
+let kasFilter = { jenis: 'semua', bulan: 'all', tahun: 'all' };
 
 const defaultHero = 'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="480" height="380" viewBox="0 0 480 380"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#065f46"/><stop offset="100%" style="stop-color:#0f172a"/></linearGradient></defs><rect width="480" height="380" fill="url(#g)"/></svg>`);
 
 const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 const monthShort = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
 
-function formatRp(n) {
-  return 'Rp ' + Number(n || 0).toLocaleString('id-ID');
+function formatRp(n){ return 'Rp ' + Number(n || 0).toLocaleString('id-ID'); }
+function getCurrentMonthKey(){ const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}`; }
+function getCurrentYear(){ return new Date().getFullYear().toString(); }
+function getToday(){ return new Date().toISOString().slice(0,10); }
+function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// Bulan referensi transaksi: pemasukan pakai bulan iuran (monthKey), pengeluaran pakai tanggal
+function txMonthKey(t){
+  if (t.type === 'masuk' && t.monthKey) return t.monthKey;
+  return (t.date || '').slice(0,7);
 }
 
-function getCurrentMonthKey() {
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-}
-
-function getCurrentYear() {
-  return new Date().getFullYear().toString();
-}
-
-function getToday() {
-  return new Date().toISOString().slice(0, 10);
-}
-
-function getMonthRange() {
+function getMonthRange(){
   const now = new Date();
   const currentYear = now.getFullYear();
   const currentMonth = now.getMonth() + 1;
-  
   let startYear, startMonth;
-  if (config.bulanAwal) {
-    const parts = config.bulanAwal.split('-');
-    startYear = parseInt(parts[0]);
-    startMonth = parseInt(parts[1]);
-  } else {
-    startYear = currentYear;
-    startMonth = 1;
-  }
-  
+  if (config.bulanAwal){
+    const p = config.bulanAwal.split('-');
+    startYear = parseInt(p[0]); startMonth = parseInt(p[1]);
+  } else { startYear = currentYear; startMonth = 1; }
   const months = [];
-  let y = startYear;
-  let m = startMonth;
-  
-  while (y < currentYear || (y === currentYear && m <= 12)) {
-    months.push({
-      key: `${y}-${String(m).padStart(2, '0')}`,
-      label: monthShort[m - 1],
-      year: y,
-      month: m,
-      isCurrent: y === currentYear && m === currentMonth
-    });
-    m++;
-    if (m > 12) {
-      m = 1;
-      y++;
-    }
+  let y = startYear, m = startMonth;
+  while (y < currentYear || (y === currentYear && m <= 12)){
+    months.push({ key:`${y}-${String(m).padStart(2,'0')}`, label:monthShort[m-1], year:y, month:m, isCurrent:(y===currentYear && m===currentMonth) });
+    m++; if (m > 12){ m = 1; y++; }
   }
-  
   return months;
 }
 
-function loadData() {
-  try {
+function loadData(){
+  try{
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const data = JSON.parse(raw);
-      if (data.config) config = { ...defaultConfig, ...data.config };
-      if (data.members) members = data.members;
-      if (data.transactions) transactions = data.transactions;
+    if (raw){
+      const d = JSON.parse(raw);
+      if (d.config) config = { ...defaultConfig, ...d.config };
+      if (d.members) members = d.members;
+      if (d.transactions) transactions = d.transactions;
     }
     const bg = localStorage.getItem(BG_KEY);
     if (bg) heroBg = bg;
-  } catch (e) {
-    console.error('Load error', e);
-  }
+  }catch(e){ console.error('Load error', e); }
 }
+function saveData(){ localStorage.setItem(STORAGE_KEY, JSON.stringify({ config, members, transactions })); }
+function saveBg(){ if (heroBg) localStorage.setItem(BG_KEY, heroBg); }
 
-function saveData() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({
-    config, members, transactions
-  }));
-}
-
-function saveBg() {
-  if (heroBg) localStorage.setItem(BG_KEY, heroBg);
-}
-
-function calcStats() {
+function calcStats(){
   const currentMonth = getCurrentMonthKey();
   const currentYear = getCurrentYear();
-
-  const totalMasukAll = transactions.filter(t => t.type === 'masuk').reduce((s, t) => s + t.amount, 0);
-  const totalMasuk = totalMasukAll;
-  const totalKeluar = transactions.filter(t => t.type === 'keluar').reduce((s, t) => s + t.amount, 0);
-  const saldo = totalMasuk + config.saldoAwal - totalKeluar;
-
-  const masukBulanIni = transactions.filter(t => t.type === 'masuk' && t.monthKey === currentMonth).reduce((s, t) => s + t.amount, 0);
-  const keluarBulanIni = transactions.filter(t => t.type === 'keluar' && t.date && t.date.startsWith(currentMonth)).reduce((s, t) => s + t.amount, 0);
-
-  const terkumpulTahunIni = transactions.filter(t => t.type === 'masuk' && t.date && t.date.startsWith(currentYear)).reduce((s, t) => s + t.amount, 0);
-  const keluarTahunIni = transactions.filter(t => t.type === 'keluar' && t.date && t.date.startsWith(currentYear)).reduce((s, t) => s + t.amount, 0);
-
-  const paidMemberIds = new Set(
-    transactions.filter(t => t.type === 'masuk' && t.monthKey === currentMonth && t.memberId)
-      .map(t => t.memberId)
-  );
+  const totalMasukAll = transactions.filter(t=>t.type==='masuk').reduce((s,t)=>s+(t.amount||0),0);
+  const totalKeluarAll = transactions.filter(t=>t.type==='keluar').reduce((s,t)=>s+(t.amount||0),0);
+  const saldo = totalMasukAll + config.saldoAwal - totalKeluarAll;
+  const masukBulanIni = transactions.filter(t=>t.type==='masuk' && t.monthKey===currentMonth).reduce((s,t)=>s+(t.amount||0),0);
+  const keluarBulanIni = transactions.filter(t=>t.type==='keluar' && t.date && t.date.startsWith(currentMonth)).reduce((s,t)=>s+(t.amount||0),0);
+  const terkumpulTahunIni = transactions.filter(t=>t.type==='masuk' && t.date && t.date.startsWith(currentYear)).reduce((s,t)=>s+(t.amount||0),0);
+  const keluarTahunIni = transactions.filter(t=>t.type==='keluar' && t.date && t.date.startsWith(currentYear)).reduce((s,t)=>s+(t.amount||0),0);
+  const paidMemberIds = new Set(transactions.filter(t=>t.type==='masuk' && t.monthKey===currentMonth && t.memberId).map(t=>t.memberId));
   const paidCount = paidMemberIds.size;
   const totalMembers = members.length;
-  const progress = totalMembers ? Math.round(paidCount / totalMembers * 100) : 0;
-
-  const eligible = members.filter(m => !m.sudahDapat && paidMemberIds.has(m.id));
-
-  return {
-    saldo, masukBulanIni, keluarBulanIni,
-    terkumpulTahunIni, keluarTahunIni,
-    totalMasuk, totalKeluar,
-    paidCount, totalMembers, progress,
-    eligible
-  };
+  const progress = totalMembers ? Math.round(paidCount/totalMembers*100) : 0;
+  const eligible = members.filter(m=>!m.sudahDapat && paidMemberIds.has(m.id));
+  return { saldo, masukBulanIni, keluarBulanIni, terkumpulTahunIni, keluarTahunIni, totalMasuk: totalMasukAll, totalKeluar: totalKeluarAll, paidCount, totalMembers, progress, eligible };
 }
 
-function escapeHtml(s) {
-  if (!s) return '';
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-function render() {
+function render(){
   const stats = calcStats();
   const currentMonth = getCurrentMonthKey();
   const currentYear = getCurrentYear();
   const monthRange = getMonthRange();
-  const currentMonthInfo = monthRange.find(m => m.key === currentMonth);
+  const currentMonthInfo = monthRange.find(m=>m.key===currentMonth);
 
   document.getElementById('headerTitle').textContent = config.groupName || 'Kelompok Iuran';
   document.getElementById('heroImg').src = heroBg || defaultHero;
-
   document.getElementById('saldoAmount').textContent = formatRp(stats.saldo);
   document.getElementById('masukBulanIni').textContent = formatRp(stats.masukBulanIni);
   document.getElementById('keluarBulanIni').textContent = formatRp(stats.keluarBulanIni);
-
   document.getElementById('terkumpulTahunIni').textContent = formatRp(stats.terkumpulTahunIni);
   document.getElementById('keluarTahunIni').textContent = formatRp(stats.keluarTahunIni);
   document.getElementById('totalMasuk').textContent = formatRp(stats.totalMasuk);
   document.getElementById('totalMembers').textContent = stats.totalMembers + ' anggota';
   document.getElementById('statYear').textContent = '• ' + currentYear;
 
-  const progressTitle = currentMonthInfo 
-    ? `Iuran ${monthNames[currentMonthInfo.month - 1]} ${currentMonthInfo.year}`
-    : 'Iuran Bulan Ini';
-  document.getElementById('progressTitle').textContent = progressTitle;
+  document.getElementById('progressTitle').textContent = currentMonthInfo ? `Iuran ${monthNames[currentMonthInfo.month-1]} ${currentMonthInfo.year}` : 'Iuran Bulan Ini';
   document.getElementById('progressTotalMembers').textContent = stats.totalMembers;
   document.getElementById('progressBadge').textContent = stats.paidCount + '/' + stats.totalMembers;
   document.getElementById('progressFill').style.width = stats.progress + '%';
@@ -755,26 +772,22 @@ function render() {
 
   const activityList = document.getElementById('activityList');
   activityList.innerHTML = '';
-  transactions.slice(0, 4).forEach(t => {
-    const member = t.memberId ? members.find(m => m.id === t.memberId) : null;
+  transactions.slice(0,4).forEach(t=>{
+    const member = t.memberId ? members.find(m=>m.id===t.memberId) : null;
     const item = document.createElement('div');
     item.className = 'activity-item';
     item.innerHTML = `
       <div class="activity-icon ${t.type}">
-        ${t.type === 'masuk' 
-          ? '<svg viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>'
-          : '<svg viewBox="0 0 24 24"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>'}
+        ${t.type==='masuk' ? '<svg viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>' : '<svg viewBox="0 0 24 24"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>'}
       </div>
       <div class="activity-info">
         <div class="activity-note">${escapeHtml(t.note)}</div>
         <div class="activity-meta">${t.date}${member ? ' • ' + escapeHtml(member.name) : ''}</div>
       </div>
-      <div class="activity-amount ${t.type}">${t.type === 'masuk' ? '+' : '-'}${formatRp(t.amount)}</div>
-    `;
+      <div class="activity-amount ${t.type}">${t.type==='masuk'?'+':'-'}${formatRp(t.amount)}</div>`;
     activityList.appendChild(item);
   });
-
-  if (transactions.length === 0) {
+  if (transactions.length === 0){
     activityList.innerHTML = '<div style="text-align:center;padding:20px;color:#a1a1aa;font-size:12px">Belum ada aktivitas</div>';
   }
 
@@ -791,31 +804,26 @@ function render() {
   document.getElementById('reportYear2').textContent = currentYear;
 }
 
-function renderMembers(monthRange) {
+function renderMembers(monthRange){
   const list = document.getElementById('memberList');
   list.innerHTML = '';
   document.getElementById('memberCount').textContent = members.length;
-
   const currentMonth = getCurrentMonthKey();
   const hintText = document.getElementById('hintText');
-  if (members.length === 0) {
+  if (members.length === 0){
     hintText.style.display = 'none';
     list.innerHTML = '<div style="text-align:center;padding:20px;color:#a1a1aa;font-size:12px">Belum ada anggota</div>';
     return;
-  } else {
-    hintText.style.display = 'block';
-  }
+  } else { hintText.style.display = 'block'; }
 
-  members.forEach(m => {
-    const paidThisMonth = transactions.some(t => t.type === 'masuk' && t.monthKey === currentMonth && t.memberId === m.id);
+  members.forEach(m=>{
+    const paidThisMonth = transactions.some(t=>t.type==='masuk' && t.monthKey===currentMonth && t.memberId===m.id);
     const isExpanded = expandedMembers.has(m.id);
     const statusText = paidThisMonth ? `✅ Sudah bayar ${monthNames[new Date().getMonth()]}` : '⏳ Belum bayar';
 
     const item = document.createElement('div');
     item.className = 'member-item' + (isExpanded ? ' expanded' : '');
-    item.dataset.memberId = m.id;
 
-    // Header (clickable)
     const header = document.createElement('div');
     header.className = 'member-header';
     header.innerHTML = `
@@ -836,30 +844,21 @@ function renderMembers(monthRange) {
       </button>
       <div class="member-chevron ${isExpanded ? 'rotated' : ''}">
         <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-    `;
-    header.addEventListener('click', () => toggleExpandMember(m.id));
+      </div>`;
+    header.addEventListener('click', ()=>toggleExpandMember(m.id));
 
-    // Month container (collapsible)
     const monthContainer = document.createElement('div');
     monthContainer.className = 'month-grid-container' + (isExpanded ? ' open' : '');
-
-    if (isExpanded) {
+    if (isExpanded){
       const monthGrid = document.createElement('div');
       monthGrid.className = 'month-grid';
-      monthRange.forEach(mk => {
-        const sudahBulan = transactions.some(t => t.type === 'masuk' && t.memberId === m.id && t.monthKey === mk.key);
+      monthRange.forEach(mk=>{
+        const sudahBulan = transactions.some(t=>t.type==='masuk' && t.memberId===m.id && t.monthKey===mk.key);
         const btn = document.createElement('button');
         btn.className = 'month-btn' + (sudahBulan ? ' paid' : '') + (mk.isCurrent ? ' current' : '');
         btn.title = `${monthNames[mk.month-1]} ${mk.year}`;
-        btn.innerHTML = `
-          <div class="month-btn-label">${mk.label}</div>
-          <div class="month-btn-check">${sudahBulan ? '✓' : '–'}</div>
-        `;
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggleBayarBulan(m.id, mk.key);
-        });
+        btn.innerHTML = `<div class="month-btn-label">${mk.label}</div><div class="month-btn-check">${sudahBulan ? '✓' : '–'}</div>`;
+        btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleBayarBulan(m.id, mk.key); });
         monthGrid.appendChild(btn);
       });
       monthContainer.appendChild(monthGrid);
@@ -871,28 +870,74 @@ function renderMembers(monthRange) {
   });
 }
 
-function toggleExpandMember(memberId) {
-  if (expandedMembers.has(memberId)) {
-    expandedMembers.delete(memberId);
-  } else {
-    expandedMembers.add(memberId);
-  }
+function toggleExpandMember(id){
+  if (expandedMembers.has(id)) expandedMembers.delete(id); else expandedMembers.add(id);
   render();
 }
 
-function renderKas() {
-  const list = document.getElementById('kasList');
-  list.innerHTML = '';
-  
-  transactions.forEach(t => {
-    const member = t.memberId ? members.find(m => m.id === t.memberId) : null;
+// ============ KAS: STATCARD + BREAKDOWN + FILTER ============
+function renderKas(){
+  // 1) Statcard & breakdown SELALU semua waktu (biar saldo jelas asal-usulnya)
+  const masukAll = transactions.filter(t=>t.type==='masuk');
+  const keluarAll = transactions.filter(t=>t.type==='keluar');
+  const totalMasuk = masukAll.reduce((s,t)=>s+(t.amount||0),0);
+  const totalKeluar = keluarAll.reduce((s,t)=>s+(t.amount||0),0);
+
+  document.getElementById('kasTotalMasuk').textContent = formatRp(totalMasuk);
+  document.getElementById('kasTotalKeluar').textContent = formatRp(totalKeluar);
+  document.getElementById('kasCountMasuk').textContent = masukAll.length + ' transaksi';
+  document.getElementById('kasCountKeluar').textContent = keluarAll.length + ' transaksi';
+
+  document.getElementById('bdMasuk').textContent = formatRp(totalMasuk);
+  document.getElementById('bdSaldoAwal').textContent = formatRp(config.saldoAwal);
+  document.getElementById('bdKeluar').textContent = '− ' + formatRp(totalKeluar);
+  document.getElementById('bdSaldo').textContent = formatRp(totalMasuk + config.saldoAwal - totalKeluar);
+
+  // 2) Isi opsi tahun (dinamis dari data)
+  const years = new Set();
+  transactions.forEach(t=>{
+    const k = txMonthKey(t);
+    if (k && k.length >= 4) years.add(k.slice(0,4));
+    if (t.date) years.add(t.date.slice(0,4));
+  });
+  years.add(getCurrentYear());
+  const yearSel = document.getElementById('filterTahun');
+  yearSel.innerHTML = '<option value="all">Semua Tahun</option>' + [...years].sort().reverse().map(y=>`<option value="${y}">${y}</option>`).join('');
+  yearSel.value = kasFilter.tahun;
+  if (yearSel.value !== kasFilter.tahun){ kasFilter.tahun = 'all'; yearSel.value = 'all'; }
+
+  // 3) Terapkan filter ke list
+  const filtered = transactions.filter(t=>{
+    if (kasFilter.jenis !== 'semua' && t.type !== kasFilter.jenis) return false;
+    const k = txMonthKey(t) || '';
+    const y = k.slice(0,4), m = k.slice(5,7);
+    if (kasFilter.tahun !== 'all' && y !== kasFilter.tahun) return false;
+    if (kasFilter.bulan !== 'all' && m !== kasFilter.bulan) return false;
+    return true;
+  });
+
+  const fMasuk = filtered.filter(t=>t.type==='masuk').reduce((s,t)=>s+(t.amount||0),0);
+  const fKeluar = filtered.filter(t=>t.type==='keluar').reduce((s,t)=>s+(t.amount||0),0);
+  const filterActive = kasFilter.jenis!=='semua' || kasFilter.bulan!=='all' || kasFilter.tahun!=='all';
+
+  document.getElementById('filterSummary').innerHTML =
+    `<span>${filtered.length} transaksi</span> • <span>Masuk <b class="green">${formatRp(fMasuk)}</b></span> • <span>Keluar <b class="red">${formatRp(fKeluar)}</b></span>` +
+    (filterActive ? ` <button class="filter-reset" onclick="resetKasFilter()">✕ Reset filter</button>` : '');
+
+  // 4) Render list
+  const listEl = document.getElementById('kasList');
+  listEl.innerHTML = '';
+  if (filtered.length === 0){
+    listEl.innerHTML = '<div style="text-align:center;padding:20px;color:#a1a1aa;font-size:12px">Tidak ada transaksi yang cocok dengan filter</div>';
+    return;
+  }
+  filtered.forEach(t=>{
+    const member = t.memberId ? members.find(m=>m.id===t.memberId) : null;
     const item = document.createElement('div');
     item.className = 'kas-item';
     item.innerHTML = `
       <div class="activity-icon ${t.type}">
-        ${t.type === 'masuk'
-          ? '<svg viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>'
-          : '<svg viewBox="0 0 24 24"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>'}
+        ${t.type==='masuk' ? '<svg viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>' : '<svg viewBox="0 0 24 24"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg>'}
       </div>
       <div class="kas-info">
         <div class="kas-note">${escapeHtml(t.note)}</div>
@@ -901,387 +946,252 @@ function renderKas() {
       <div class="kas-amount-wrap">
         <div class="kas-amount ${t.type}">${formatRp(t.amount)}</div>
         <div class="kas-member">${member ? escapeHtml(member.name) : ''}</div>
-      </div>
-    `;
-    list.appendChild(item);
+      </div>`;
+    listEl.appendChild(item);
   });
-
-  if (transactions.length === 0) {
-    list.innerHTML = '<div style="text-align:center;padding:20px;color:#a1a1aa;font-size:12px">Belum ada transaksi</div>';
-  }
 }
 
-function renderEligibleGrid(stats) {
+function resetKasFilter(){
+  kasFilter = { jenis:'semua', bulan:'all', tahun:'all' };
+  document.getElementById('filterJenis').value = 'semua';
+  document.getElementById('filterBulan').value = 'all';
+  renderKas();
+}
+
+document.getElementById('filterJenis').addEventListener('change', e=>{ kasFilter.jenis = e.target.value; renderKas(); });
+document.getElementById('filterBulan').addEventListener('change', e=>{ kasFilter.bulan = e.target.value; renderKas(); });
+document.getElementById('filterTahun').addEventListener('change', e=>{ kasFilter.tahun = e.target.value; renderKas(); });
+
+function renderEligibleGrid(stats){
   const grid = document.getElementById('eligibleGrid');
   grid.innerHTML = '';
-  
-  members.forEach(m => {
-    const isEligible = stats.eligible.some(e => e.id === m.id);
+  members.forEach(m=>{
+    const isEligible = stats.eligible.some(e=>e.id===m.id);
     const item = document.createElement('div');
     item.className = 'eligible-item' + (isEligible ? ' is-eligible' : '');
-    
     let status = 'Belum bayar / sudah dapat';
     if (m.sudahDapat) status = 'Sudah dapat';
     else if (isEligible) status = 'Eligible ✅';
-    
-    item.innerHTML = `
-      <div class="eligible-name">${escapeHtml(m.name)}</div>
-      <div class="eligible-status">${status}</div>
-    `;
+    item.innerHTML = `<div class="eligible-name">${escapeHtml(m.name)}</div><div class="eligible-status">${status}</div>`;
     grid.appendChild(item);
   });
 }
 
-function switchPage(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+function switchPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.page === page);
-  });
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.page === page));
 }
+document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click', ()=>switchPage(btn.dataset.page)));
 
-document.querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => switchPage(btn.dataset.page));
-});
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
 
-function openModal(id) {
-  document.getElementById(id).classList.add('show');
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove('show');
-}
-
-document.getElementById('btnSettings').addEventListener('click', () => {
+document.getElementById('btnSettings').addEventListener('click', ()=>{
   document.getElementById('inputGroupName').value = config.groupName || '';
   document.getElementById('inputIuran').value = config.iuranPerBulan || 0;
   document.getElementById('inputSaldo').value = config.saldoAwal || 0;
   document.getElementById('inputBulanAwal').value = config.bulanAwal || getCurrentMonthKey();
   openModal('modalSettings');
 });
-
-function saveSettings() {
+function saveSettings(){
   config.groupName = document.getElementById('inputGroupName').value.trim();
   config.iuranPerBulan = Number(document.getElementById('inputIuran').value) || 0;
   config.saldoAwal = Number(document.getElementById('inputSaldo').value) || 0;
   config.bulanAwal = document.getElementById('inputBulanAwal').value || getCurrentMonthKey();
-  saveData();
-  render();
-  closeModal('modalSettings');
-  showHeroToast('Pengaturan disimpan ✓');
+  saveData(); render(); closeModal('modalSettings'); showHeroToast('Pengaturan disimpan ✓');
 }
 
-function triggerBgChange() {
-  document.getElementById('bgInput').click();
-}
-
+function triggerBgChange(){ document.getElementById('bgInput').click(); }
 document.getElementById('btnChangeBg').addEventListener('click', triggerBgChange);
 document.getElementById('btnChangeBg2').addEventListener('click', triggerBgChange);
-
-document.getElementById('bgInput').addEventListener('change', (e) => {
+document.getElementById('bgInput').addEventListener('change', e=>{
   const file = e.target.files?.[0];
   if (!file) return;
   const reader = new FileReader();
-  reader.onload = () => {
-    heroBg = reader.result;
-    saveBg();
-    render();
-    showHeroToast('Background diperbarui ✓');
-  };
+  reader.onload = ()=>{ heroBg = reader.result; saveBg(); render(); showHeroToast('Background diperbarui ✓'); };
   reader.readAsDataURL(file);
 });
-
-function showHeroToast(msg) {
+function showHeroToast(msg){
   const toast = document.getElementById('heroToast');
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2200);
+  toast.textContent = msg; toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), 2200);
 }
 
-document.getElementById('btnAddIuran').addEventListener('click', () => {
+document.getElementById('btnAddIuran').addEventListener('click', ()=>{
   document.getElementById('inputJenis').value = '';
   document.getElementById('inputMonthKey').value = getCurrentMonthKey();
   document.getElementById('inputAmount').value = config.iuranPerBulan || 10000;
   document.getElementById('inputNote').value = '';
   openModal('modalIuran');
 });
-
-function saveIuran() {
+function saveIuran(){
   const jenis = document.getElementById('inputJenis').value;
-  if (!jenis) {
-    alert('Pilih jenis pemasukan');
-    return;
-  }
-  
-  const jenisLabel = {
-    saldo_lalu: 'Sisa saldo tahun lalu',
-    sumbangan: 'Sumbangan',
-    lainnya: 'Pemasukan lain'
-  }[jenis];
-
-  const t = {
-    id: Date.now().toString(),
-    type: 'masuk',
+  if (!jenis){ alert('Pilih jenis pemasukan'); return; }
+  const jenisLabel = { saldo_lalu:'Sisa saldo tahun lalu', sumbangan:'Sumbangan', lainnya:'Pemasukan lain' }[jenis];
+  transactions.unshift({
+    id: Date.now().toString(), type:'masuk',
     amount: Number(document.getElementById('inputAmount').value),
     date: getToday(),
     monthKey: document.getElementById('inputMonthKey').value,
     note: document.getElementById('inputNote').value || jenisLabel
-  };
-
-  transactions.unshift(t);
-  saveData();
-  render();
-  closeModal('modalIuran');
-  showHeroToast('Iuran dicatat ✓');
+  });
+  saveData(); render(); closeModal('modalIuran'); showHeroToast('Iuran dicatat ✓');
 }
 
-document.getElementById('btnAddKeluar').addEventListener('click', () => {
+document.getElementById('btnAddKeluar').addEventListener('click', ()=>{
   document.getElementById('inputTglKeluar').value = getToday();
   document.getElementById('inputAmountKeluar').value = '';
   document.getElementById('inputNoteKeluar').value = '';
   openModal('modalKeluar');
 });
-
-function saveKeluar() {
+function saveKeluar(){
   const amount = Number(document.getElementById('inputAmountKeluar').value);
-  if (amount <= 0) {
-    alert('Nominal harus lebih dari 0');
-    return;
-  }
-
-  const t = {
-    id: Date.now().toString(),
-    type: 'keluar',
-    amount,
+  if (amount <= 0){ alert('Nominal harus lebih dari 0'); return; }
+  transactions.unshift({
+    id: Date.now().toString(), type:'keluar', amount,
     date: document.getElementById('inputTglKeluar').value,
     note: document.getElementById('inputNoteKeluar').value || 'Pengeluaran'
-  };
-
-  transactions.unshift(t);
-  saveData();
-  render();
-  closeModal('modalKeluar');
-  showHeroToast('Pengeluaran dicatat ✓');
+  });
+  saveData(); render(); closeModal('modalKeluar'); showHeroToast('Pengeluaran dicatat ✓');
 }
 
 document.getElementById('btnAddMember').addEventListener('click', addMember);
-document.getElementById('newMemberName').addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') addMember();
-});
-
-function addMember() {
+document.getElementById('newMemberName').addEventListener('keypress', e=>{ if (e.key === 'Enter') addMember(); });
+function addMember(){
   const input = document.getElementById('newMemberName');
   const name = input.value.trim();
   if (!name) return;
-
-  members.push({
-    id: Date.now().toString(),
-    name,
-    sudahDapat: false,
-    joinDate: getToday()
-  });
-
-  input.value = '';
-  saveData();
-  render();
+  members.push({ id: Date.now().toString(), name, sudahDapat:false, joinDate:getToday() });
+  input.value = ''; saveData(); render();
 }
-
-function deleteMember(id) {
+function deleteMember(id){
   if (!confirm('Hapus anggota ini? Riwayat iurannya juga akan dihapus.')) return;
-  members = members.filter(m => m.id !== id);
-  transactions = transactions.filter(t => t.memberId !== id);
+  members = members.filter(m=>m.id!==id);
+  transactions = transactions.filter(t=>t.memberId!==id);
   expandedMembers.delete(id);
-  saveData();
-  render();
+  saveData(); render();
 }
-
-function toggleDoorprize(id, checked) {
-  members = members.map(m => m.id === id ? { ...m, sudahDapat: checked } : m);
-  saveData();
-  render();
+function toggleDoorprize(id, checked){
+  members = members.map(m=>m.id===id ? { ...m, sudahDapat:checked } : m);
+  saveData(); render();
 }
-
-function toggleBayarBulan(memberId, monthKey) {
-  const existing = transactions.find(t => t.type === 'masuk' && t.memberId === memberId && t.monthKey === monthKey);
-  if (existing) {
-    transactions = transactions.filter(t => t.id !== existing.id);
+function toggleBayarBulan(memberId, monthKey){
+  const existing = transactions.find(t=>t.type==='masuk' && t.memberId===memberId && t.monthKey===monthKey);
+  if (existing){
+    transactions = transactions.filter(t=>t.id!==existing.id);
   } else {
-    transactions.unshift({
-      id: Date.now().toString(),
-      type: 'masuk',
-      amount: config.iuranPerBulan,
-      date: getToday(),
-      memberId,
-      monthKey,
-      note: 'Iuran ' + monthKey
-    });
+    transactions.unshift({ id:Date.now().toString(), type:'masuk', amount:config.iuranPerBulan, date:getToday(), memberId, monthKey, note:'Iuran ' + monthKey });
   }
-  saveData();
-  render();
+  saveData(); render();
 }
 
-let currentWinner = null;
-let isShuffling = false;
-
+let currentWinner = null, isShuffling = false;
 document.getElementById('btnDoorprize').addEventListener('click', openDoorprizeModal);
 document.getElementById('btnDoorprize2').addEventListener('click', openDoorprizeModal);
-
-function openDoorprizeModal() {
+function openDoorprizeModal(){
   currentWinner = null;
   document.getElementById('doorprizeDisplay').innerHTML = '<div class="doorprize-placeholder">Tekan Kocok untuk mulai</div>';
   document.getElementById('btnMarkWon').classList.add('hidden');
   document.getElementById('doorprizeError').classList.add('hidden');
-  
-  const stats = calcStats();
-  if (stats.eligible.length === 0) {
-    document.getElementById('doorprizeError').classList.remove('hidden');
-  }
-  
+  if (calcStats().eligible.length === 0) document.getElementById('doorprizeError').classList.remove('hidden');
   openModal('modalDoorprize');
 }
-
-function closeDoorprize() {
-  closeModal('modalDoorprize');
-  if (isShuffling) {
-    isShuffling = false;
-  }
-}
-
-document.getElementById('btnShuffle').addEventListener('click', () => {
+function closeDoorprize(){ closeModal('modalDoorprize'); isShuffling = false; }
+document.getElementById('btnShuffle').addEventListener('click', ()=>{
   const stats = calcStats();
-  if (stats.eligible.length === 0) return;
-  if (isShuffling) return;
-
+  if (stats.eligible.length === 0 || isShuffling) return;
   isShuffling = true;
   document.getElementById('shuffleText').textContent = 'Mengocok...';
   document.getElementById('btnMarkWon').classList.add('hidden');
-  
   let count = 0;
-  const interval = setInterval(() => {
-    const randomMember = stats.eligible[Math.floor(Math.random() * stats.eligible.length)];
-    document.getElementById('doorprizeDisplay').innerHTML = `<div class="doorprize-shuffle">${escapeHtml(randomMember.name)}</div>`;
+  const interval = setInterval(()=>{
+    const rnd = stats.eligible[Math.floor(Math.random()*stats.eligible.length)];
+    document.getElementById('doorprizeDisplay').innerHTML = `<div class="doorprize-shuffle">${escapeHtml(rnd.name)}</div>`;
     count++;
-    
-    if (count > 20) {
+    if (count > 20){
       clearInterval(interval);
-      currentWinner = stats.eligible[Math.floor(Math.random() * stats.eligible.length)];
+      currentWinner = stats.eligible[Math.floor(Math.random()*stats.eligible.length)];
       document.getElementById('doorprizeDisplay').innerHTML = `
         <div class="doorprize-winner">
           <svg viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
           <div class="doorprize-winner-name">${escapeHtml(currentWinner.name)}</div>
           <div class="doorprize-winner-label">PEMENANG! 🎉</div>
         </div>
-        <div class="doorprize-ping"></div>
-      `;
+        <div class="doorprize-ping"></div>`;
       document.getElementById('shuffleText').textContent = 'Kocok';
       document.getElementById('btnMarkWon').classList.remove('hidden');
       isShuffling = false;
     }
   }, 90);
 });
-
-function markWon() {
+function markWon(){
   if (!currentWinner) return;
-  members = members.map(m => m.id === currentWinner.id ? { ...m, sudahDapat: true } : m);
-  saveData();
-  render();
-  closeModal('modalDoorprize');
+  members = members.map(m=>m.id===currentWinner.id ? { ...m, sudahDapat:true } : m);
+  saveData(); render(); closeModal('modalDoorprize');
   showHeroToast(currentWinner.name + ' mendapat doorprize! 🎉');
 }
 
-document.getElementById('btnExport').addEventListener('click', () => {
+document.getElementById('btnExport').addEventListener('click', ()=>{
   const stats = calcStats();
   const year = getCurrentYear();
-  
-  let report = `LAPORAN ${config.groupName.toUpperCase()}\n`;
+  let report = `LAPORAN ${(config.groupName || 'IURAN').toUpperCase()}\n`;
   report += `Periode: ${year}\n`;
   report += `Bulan Mulai: ${config.bulanAwal || 'Tidak diset'}\n`;
   report += `Saldo Kas Saat Ini: ${formatRp(stats.saldo)}\n`;
+  report += `  = Pemasukan ${formatRp(stats.totalMasuk)} + Saldo Awal ${formatRp(config.saldoAwal)} - Pengeluaran ${formatRp(stats.totalKeluar)}\n`;
   report += `Terkumpul Tahun Ini: ${formatRp(stats.terkumpulTahunIni)}\n`;
   report += `Keluar Tahun Ini: ${formatRp(stats.keluarTahunIni)}\n`;
   report += `Anggota: ${members.length} orang\n\n`;
   report += `=== DAFTAR ANGGOTA & STATUS BAYAR ===\n`;
-  
   const monthRange = getMonthRange();
-  members.forEach(m => {
+  members.forEach(m=>{
     report += `\n${m.name}${m.sudahDapat ? ' (SUDAH DAPAT DOORPRIZE)' : ''}\n`;
-    monthRange.forEach(mk => {
-      const sudah = transactions.some(t => t.type === 'masuk' && t.memberId === m.id && t.monthKey === mk.key);
+    monthRange.forEach(mk=>{
+      const sudah = transactions.some(t=>t.type==='masuk' && t.memberId===m.id && t.monthKey===mk.key);
       report += `  ${monthNames[mk.month-1]} ${mk.year}: ${sudah ? '✓ Lunas' : '— Belum'}\n`;
     });
   });
-  
   report += `\n=== RIWAYAT TRANSAKSI ===\n`;
-  transactions.slice(0, 100).forEach(t => {
-    const member = t.memberId ? members.find(m => m.id === t.memberId) : null;
-    const memberName = member ? ` (${member.name})` : '';
-    report += `${t.date} | ${t.type.toUpperCase()} | ${formatRp(t.amount)} | ${t.note}${memberName}\n`;
+  transactions.slice(0,100).forEach(t=>{
+    const member = t.memberId ? members.find(m=>m.id===t.memberId) : null;
+    report += `${t.date} | ${t.type.toUpperCase()} | ${formatRp(t.amount)} | ${t.note}${member ? ` (${member.name})` : ''}\n`;
   });
-
-  const blob = new Blob([report], { type: 'text/plain' });
+  const blob = new Blob([report], { type:'text/plain' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = `laporan-${config.groupName || 'iuran'}-${year}.txt`;
-  a.click();
+  a.href = url; a.download = `laporan-${config.groupName || 'iuran'}-${year}.txt`; a.click();
   URL.revokeObjectURL(url);
   showHeroToast('Laporan TXT diunduh ✓');
 });
 
-document.getElementById('btnExportJson').addEventListener('click', () => {
-  const data = {
-    version: '1.0',
-    exportDate: new Date().toISOString(),
-    app: 'Iuran App',
-    config,
-    members,
-    transactions
-  };
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+document.getElementById('btnExportJson').addEventListener('click', ()=>{
+  const data = { version:'1.0', exportDate:new Date().toISOString(), app:'Iuran App', config, members, transactions };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  const dateStr = new Date().toISOString().slice(0, 10);
-  a.download = `iuran-backup-${config.groupName || 'data'}-${dateStr}.json`;
-  a.click();
+  a.href = url; a.download = `iuran-backup-${config.groupName || 'data'}-${new Date().toISOString().slice(0,10)}.json`; a.click();
   URL.revokeObjectURL(url);
   showHeroToast('Data JSON diexport ✓');
 });
-
-document.getElementById('btnImportJson').addEventListener('click', () => {
-  document.getElementById('importInput').click();
-});
-
-document.getElementById('importInput').addEventListener('change', (e) => {
+document.getElementById('btnImportJson').addEventListener('click', ()=>document.getElementById('importInput').click());
+document.getElementById('importInput').addEventListener('change', e=>{
   const file = e.target.files?.[0];
   if (!file) return;
-  
-  if (!confirm('Import akan MENGGANTI semua data saat ini. Lanjutkan?')) {
-    e.target.value = '';
-    return;
-  }
-  
+  if (!confirm('Import akan MENGGANTI semua data saat ini. Lanjutkan?')){ e.target.value = ''; return; }
   const reader = new FileReader();
-  reader.onload = (ev) => {
-    try {
+  reader.onload = ev=>{
+    try{
       const data = JSON.parse(ev.target.result);
-      
-      if (!data.config || !data.members || !data.transactions) {
-        throw new Error('Format file tidak valid');
-      }
-      
+      if (!data.config || !data.members || !data.transactions) throw new Error('Format file tidak valid');
       config = { ...defaultConfig, ...data.config };
       members = data.members;
       transactions = data.transactions;
       expandedMembers.clear();
-      
-      saveData();
-      render();
+      saveData(); render();
       showHeroToast('Data berhasil diimport! ✓');
       alert(`Import berhasil!\n\nKelompok: ${config.groupName || '-'}\nAnggota: ${members.length}\nTransaksi: ${transactions.length}`);
-    } catch (err) {
-      alert('Gagal import: ' + err.message);
-    }
+    }catch(err){ alert('Gagal import: ' + err.message); }
     e.target.value = '';
   };
   reader.readAsText(file);
@@ -1289,10 +1199,7 @@ document.getElementById('importInput').addEventListener('change', (e) => {
 
 loadData();
 if (!heroBg) heroBg = defaultHero;
-if (!config.bulanAwal) {
-  config.bulanAwal = getCurrentMonthKey();
-  saveData();
-}
+if (!config.bulanAwal){ config.bulanAwal = getCurrentMonthKey(); saveData(); }
 render();
 </script>
 </body>
