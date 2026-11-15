@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Iuran</title>
 <link rel="manifest" href="./manifest.json">
-  <meta name="theme-color" content="#065f46">
-  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
-  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+<meta name="theme-color" content="#065f46">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
@@ -95,30 +95,55 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .activity-amount{font-size:12px;font-weight:700}
 .activity-amount.masuk{color:#065f46}
 .activity-amount.keluar{color:#dc2626}
-.member-item{padding:12px;border-radius:16px;background:#fdf6ec;border:1px solid rgba(0,0,0,0.03);margin-bottom:8px;overflow:hidden;transition:box-shadow 0.2s}
-.member-item.expanded{box-shadow:0 2px 8px rgba(6,95,70,0.08)}
-.member-header{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none;padding:4px 0}
-.member-header:active{opacity:0.7}
-.member-avatar{width:36px;height:36px;border-radius:50%;background:#065f46;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+
+/* ANGGOTA & TUNGGAKAN PILLS */
+.arrears-summary-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;padding:10px 12px;border-radius:14px;background:#fef2f2;border:1px solid #fecaca;align-items:center;justify-content:space-between}
+.arrears-summary-text{font-size:11px;color:#991b1b;font-weight:600}
+.arrears-summary-val{font-size:12px;font-weight:800;color:#dc2626}
+.member-item{padding:12px;border-radius:16px;background:#fdf6ec;border:1px solid rgba(0,0,0,0.04);margin-bottom:10px;overflow:hidden;transition:box-shadow 0.2s}
+.member-item.has-prev-arrears{border-color:#fca5a5;background:#fffaf9}
+.member-item.expanded{box-shadow:0 4px 12px rgba(6,95,70,0.08)}
+.member-header{display:flex;align-items:flex-start;gap:10px;cursor:pointer;user-select:none;padding:2px 0}
+.member-header:active{opacity:0.75}
+.member-avatar{width:36px;height:36px;border-radius:50%;background:#065f46;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;margin-top:2px}
+.member-avatar.warn{background:#dc2626}
 .member-info{flex:1;min-width:0}
-.member-name{font-size:13px;font-weight:600;color:#0f172a}
-.member-status{font-size:11px;color:#71717a;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.member-doorprize-badge{padding:2px 6px;border-radius:9999px;background:#fef3c7;color:#b45309;font-size:9px;font-weight:700}
-.member-actions{display:flex;align-items:center;gap:8px}
-.checkbox-wrap{display:flex;align-items:center;gap:4px;font-size:11px;color:#71717a}
-.delete-btn{width:28px;height:28px;border-radius:50%;background:white;border:1px solid #e4e4e7;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.delete-btn svg{width:14px;height:14px;stroke:#71717a;fill:none;stroke-width:2}
+.member-name-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.member-name{font-size:13px;font-weight:700;color:#0f172a}
+.member-pills{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.pill{padding:2px 8px;border-radius:9999px;font-size:10px;font-weight:700;line-height:1.4;display:inline-flex;align-items:center;gap:3px}
+.pill-arrears-prev{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5}
+.pill-arrears-curr{background:#ffedd5;color:#c2410c;border:1px solid #fdba74}
+.pill-ok{background:#dcfce7;color:#15803d}
+.pill-pending{background:#f4f4f5;color:#52525b}
+.pill-doorprize{background:#fef3c7;color:#b45309}
+.member-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.checkbox-wrap{display:flex;align-items:center;gap:4px;font-size:10px;color:#71717a;font-weight:600}
+.delete-btn{width:26px;height:26px;border-radius:50%;background:white;border:1px solid #e4e4e7;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.delete-btn svg{width:13px;height:13px;stroke:#71717a;fill:none;stroke-width:2}
 .member-chevron{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.25s ease}
 .member-chevron svg{width:16px;height:16px;stroke:#71717a;fill:none;stroke-width:2}
 .member-chevron.rotated{transform:rotate(180deg)}
-.month-grid-container{max-height:0;overflow:hidden;transition:max-height 0.3s ease}
-.month-grid-container.open{max-height:500px}
-.month-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding-top:12px}
-.month-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 2px;border-radius:12px;font-weight:700;cursor:pointer;border:1px solid #e4e4e7;background:white;color:#a1a1aa;font-family:inherit;transition:all 0.2s}
+
+.month-grid-container{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
+.month-grid-container.open{max-height:900px}
+.year-section{margin-top:12px;padding-top:10px;border-top:1px dashed #e4e4e7}
+.year-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.year-section-title{font-size:11px;font-weight:800;color:#0f172a;display:flex;align-items:center;gap:6px}
+.year-section-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:9999px}
+.year-section-badge.red{background:#fee2e2;color:#b91c1c}
+.year-section-badge.orange{background:#ffedd5;color:#c2410c}
+.year-section-badge.green{background:#dcfce7;color:#15803d}
+.month-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.month-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:7px 2px;border-radius:10px;font-weight:700;cursor:pointer;border:1px solid #e4e4e7;background:white;color:#a1a1aa;font-family:inherit;transition:all 0.15s}
 .month-btn.paid{background:#065f46;color:white;border-color:#065f46}
-.month-btn.current{box-shadow:0 0 0 2px rgba(6,95,70,0.35)}
-.month-btn-label{font-size:11px}
+.month-btn.arrears{background:#fef2f2;color:#dc2626;border-color:#fca5a5}
+.month-btn.current{box-shadow:0 0 0 2px rgba(6,95,70,0.4)}
+.month-btn-label{font-size:10px}
 .month-btn-check{font-size:10px}
+.toggle-history-btn{margin-top:10px;width:100%;padding:7px 10px;border-radius:10px;border:1px dashed #cbd5e1;background:white;color:#475569;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
+.toggle-history-btn:hover{background:#f8fafc}
+
 .kas-list{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding-right:4px}
 .kas-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;border:1px solid #f4f4f5}
 .kas-info{flex:1;min-width:0}
@@ -134,6 +159,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .breakdown-row b{font-weight:700}
 .breakdown-row b.green{color:#065f46}
 .breakdown-row b.red{color:#dc2626}
+.breakdown-row.sub{padding-left:10px;font-size:11px;background:#f8fafc;border-radius:8px;padding:6px 10px;margin:2px 0}
 .breakdown-row.total{border-top:1px solid #e4e4e7;margin-top:6px;padding-top:12px;font-size:13px}
 .breakdown-row.total span{color:#0f172a;font-weight:700}
 .breakdown-note{margin-top:10px;font-size:10px;color:#a1a1aa;line-height:1.5}
@@ -197,12 +223,12 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .info-box-title{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;font-weight:700}
 .info-box-title svg{width:16px;height:16px;stroke:#065f46;fill:none;stroke-width:2}
 .info-box-text{font-size:11px;color:#71717a;line-height:1.625}
-.add-member-row{display:flex;gap:8px;margin-bottom:16px}
+.add-member-row{display:flex;gap:8px;margin-bottom:12px}
 .add-member-input{flex:1;border-radius:9999px;border:1px solid #e4e4e7;padding:10px 16px;font-size:13px;outline:none;font-family:inherit}
 .add-member-input:focus{box-shadow:0 0 0 2px rgba(6,95,70,0.2)}
 .add-member-btn{width:40px;height:40px;border-radius:50%;background:#065f46;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .add-member-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
-.hint-text{font-size:10px;color:#a1a1aa;text-align:center;margin-top:8px}
+.hint-text{font-size:10px;color:#a1a1aa;text-align:center;margin-bottom:10px}
 .btn-import{background:#f59e0b;color:#0f172a}
 .btn-import:hover{filter:brightness(1.05)}
 .doorprize-modal{width:100%;max-width:360px;background:#fdf6ec;border-radius:28px;padding:24px;text-align:center;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.5);position:relative;overflow:hidden}
@@ -284,7 +310,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
           <div class="saldo-item-amount" id="keluarBulanIni">Rp 0</div>
         </div>
       </div>
-      <div class="saldo-note">Saldo terus kumulatif lintas tahun • tidak reset tiap tahun • termasuk saldo awal</div>
+      <div class="saldo-note">Saldo akhir tahun lalu otomatis menjadi saldo awal tahun ini • tidak reset</div>
     </div>
   </div>
 
@@ -356,12 +382,16 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
             <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
           </button>
         </div>
-        <p class="hint-text" id="hintText">💡 Tap card anggota untuk melihat detail bulan</p>
+        <div id="arrearsSummaryBar" class="arrears-summary-bar hidden">
+          <span class="arrears-summary-text" id="arrearsSummaryText">Total tunggakan aktif</span>
+          <span class="arrears-summary-val" id="arrearsSummaryVal">Rp 0</span>
+        </div>
+        <p class="hint-text" id="hintText">💡 Tap card anggota untuk kelola iuran per tahun</p>
         <div id="memberList"></div>
       </div>
     </div>
 
-    <!-- KAS (BARU: statcard + filter) -->
+    <!-- KAS -->
     <div class="page" id="page-kas">
       <div class="stats-grid">
         <div class="stat-card">
@@ -379,13 +409,17 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
       <div class="card">
         <div class="card-title">
           <svg viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
-          Asal Saldo Saat Ini
+          Asal Saldo & Carry-Over Tahunan
         </div>
-        <div class="breakdown-row"><span>Total Pemasukan</span><b class="green" id="bdMasuk">Rp 0</b></div>
-        <div class="breakdown-row"><span>Saldo Awal (pengaturan)</span><b id="bdSaldoAwal">Rp 0</b></div>
-        <div class="breakdown-row"><span>Total Pengeluaran</span><b class="red" id="bdKeluar">Rp 0</b></div>
-        <div class="breakdown-row total"><span>= Saldo Saat Ini</span><b class="green" id="bdSaldo">Rp 0</b></div>
-        <p class="breakdown-note">Rumus: Pemasukan + Saldo Awal − Pengeluaran = Saldo. Semua angka kumulatif lintas tahun.</p>
+        <div class="breakdown-row sub">
+          <span id="bdCarryLabel">Saldo Awal Tahun Ini (Sisa Akhir Tahun Lalu)</span>
+          <b class="green" id="bdCarryAmount">Rp 0</b>
+        </div>
+        <div class="breakdown-row"><span>Total Pemasukan (All Time)</span><b class="green" id="bdMasuk">Rp 0</b></div>
+        <div class="breakdown-row"><span>Saldo Awal (pengaturan awal)</span><b id="bdSaldoAwal">Rp 0</b></div>
+        <div class="breakdown-row"><span>Total Pengeluaran (All Time)</span><b class="red" id="bdKeluar">Rp 0</b></div>
+        <div class="breakdown-row total"><span>= Saldo Kas Saat Ini</span><b class="green" id="bdSaldo">Rp 0</b></div>
+        <p class="breakdown-note">Saldo akhir tahun n-1 otomatis menjadi saldo awal tahun n. Pelunasan tunggakan tahun lalu langsung menambah saldo kas berjalan.</p>
       </div>
 
       <div class="card">
@@ -433,7 +467,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
     <!-- DOORPRIZE -->
     <div class="page" id="page-doorprize">
       <div class="doorprize-card">
-        <div class="doorprize-icon-wrap"><svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+        <div class="doorprize-icon-wrap"><svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55-.47.98-.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
         <h3 class="doorprize-title">Doorprize Kocokan</h3>
         <p class="doorprize-desc">Hanya yang belum pernah dapat & sudah bayar bulan ini yang eligible • <span id="eligibleCount2">0</span> orang</p>
         <div class="eligible-grid" id="eligibleGrid"></div>
@@ -545,14 +579,14 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
       <div class="form-group">
         <label class="form-label">Bulan Mulai Iuran</label>
         <input class="form-input" type="month" id="inputBulanAwal">
-        <p style="font-size:10px;color:#a1a1aa;margin-top:4px">Pilih bulan & tahun mulai pencatatan iuran. Contoh: Mei 2025</p>
+        <p style="font-size:10px;color:#a1a1aa;margin-top:4px">Pilih bulan & tahun mulai pencatatan iuran. Bulan sebelum sekarang yang belum dibayar otomatis dihitung tunggakan.</p>
       </div>
       <div class="info-box">
         <div class="info-box-title">
           <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
           Info Penyimpanan
         </div>
-        <p class="info-box-text">Data disimpan lokal di browser (localStorage: iuran-senam-data-v3). Hero background disimpan di iuran-hero-bg-v3. Saldo kumulatif lintas tahun tidak reset.</p>
+        <p class="info-box-text">Data disimpan lokal di browser (localStorage: iuran-senam-data-v3). Saldo akhir tahun n-1 otomatis menjadi saldo awal tahun n.</p>
       </div>
       <button class="btn-primary" onclick="saveSettings()">Simpan Pengaturan</button>
     </div>
@@ -670,6 +704,7 @@ let members = [];
 let transactions = [];
 let heroBg = '';
 let expandedMembers = new Set();
+let showLunasHistory = new Set();
 let kasFilter = { jenis: 'semua', bulan: 'all', tahun: 'all' };
 
 const defaultHero = 'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="480" height="380" viewBox="0 0 480 380"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#065f46"/><stop offset="100%" style="stop-color:#0f172a"/></linearGradient></defs><rect width="480" height="380" fill="url(#g)"/></svg>`);
@@ -683,7 +718,6 @@ function getCurrentYear(){ return new Date().getFullYear().toString(); }
 function getToday(){ return new Date().toISOString().slice(0,10); }
 function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-// Bulan referensi transaksi: pemasukan pakai bulan iuran (monthKey), pengeluaran pakai tanggal
 function txMonthKey(t){
   if (t.type === 'masuk' && t.monthKey) return t.monthKey;
   return (t.date || '').slice(0,7);
@@ -705,6 +739,45 @@ function getMonthRange(){
     m++; if (m > 12){ m = 1; y++; }
   }
   return months;
+}
+
+// Hitung tunggakan anggota: dipisah antara Tahun Lalu (n-1 & sebelumnya) dan Tahun Ini (n)
+function getMemberArrears(memberId, monthRange){
+  const currentMonth = getCurrentMonthKey();
+  const currentYear = new Date().getFullYear();
+  const paidKeys = new Set(
+    transactions
+      .filter(t => t.type === 'masuk' && t.memberId === memberId && t.monthKey)
+      .map(t => t.monthKey)
+  );
+
+  const prevYearsMap = {}; // { 2025: [mk, ...] }
+  const prevUnpaid = [];
+  const currUnpaid = [];
+
+  monthRange.forEach(mk => {
+    const isPaid = paidKeys.has(mk.key);
+    const isDue = mk.key <= currentMonth; // Hanya bulan s.d. bulan berjalan yang dihitung menunggak
+    if (mk.year < currentYear) {
+      if (!prevYearsMap[mk.year]) prevYearsMap[mk.year] = { year: mk.year, months: [], unpaid: [] };
+      prevYearsMap[mk.year].months.push({ ...mk, isPaid, isDue });
+      if (!isPaid && isDue) {
+        prevYearsMap[mk.year].unpaid.push(mk);
+        prevUnpaid.push(mk);
+      }
+    } else if (mk.year === currentYear) {
+      if (!isPaid && isDue) currUnpaid.push(mk);
+    }
+  });
+
+  return {
+    paidKeys,
+    prevUnpaid,
+    currUnpaid,
+    prevYearsList: Object.values(prevYearsMap).sort((a, b) => a.year - b.year),
+    totalUnpaidCount: prevUnpaid.length + currUnpaid.length,
+    totalUnpaidAmount: (prevUnpaid.length + currUnpaid.length) * (config.iuranPerBulan || 10000)
+  };
 }
 
 function loadData(){
@@ -729,6 +802,12 @@ function calcStats(){
   const totalMasukAll = transactions.filter(t=>t.type==='masuk').reduce((s,t)=>s+(t.amount||0),0);
   const totalKeluarAll = transactions.filter(t=>t.type==='keluar').reduce((s,t)=>s+(t.amount||0),0);
   const saldo = totalMasukAll + config.saldoAwal - totalKeluarAll;
+
+  // Saldo akhir tahun n-1 = saldo awal tahun n (semua kas sebelum tahun berjalan)
+  const masukSebelumTahunIni = transactions.filter(t=>t.type==='masuk' && t.date && t.date.slice(0,4) < currentYear).reduce((s,t)=>s+(t.amount||0),0);
+  const keluarSebelumTahunIni = transactions.filter(t=>t.type==='keluar' && t.date && t.date.slice(0,4) < currentYear).reduce((s,t)=>s+(t.amount||0),0);
+  const saldoCarryOver = config.saldoAwal + masukSebelumTahunIni - keluarSebelumTahunIni;
+
   const masukBulanIni = transactions.filter(t=>t.type==='masuk' && t.monthKey===currentMonth).reduce((s,t)=>s+(t.amount||0),0);
   const keluarBulanIni = transactions.filter(t=>t.type==='keluar' && t.date && t.date.startsWith(currentMonth)).reduce((s,t)=>s+(t.amount||0),0);
   const terkumpulTahunIni = transactions.filter(t=>t.type==='masuk' && t.date && t.date.startsWith(currentYear)).reduce((s,t)=>s+(t.amount||0),0);
@@ -738,7 +817,7 @@ function calcStats(){
   const totalMembers = members.length;
   const progress = totalMembers ? Math.round(paidCount/totalMembers*100) : 0;
   const eligible = members.filter(m=>!m.sudahDapat && paidMemberIds.has(m.id));
-  return { saldo, masukBulanIni, keluarBulanIni, terkumpulTahunIni, keluarTahunIni, totalMasuk: totalMasukAll, totalKeluar: totalKeluarAll, paidCount, totalMembers, progress, eligible };
+  return { saldo, saldoCarryOver, masukBulanIni, keluarBulanIni, terkumpulTahunIni, keluarTahunIni, totalMasuk: totalMasukAll, totalKeluar: totalKeluarAll, paidCount, totalMembers, progress, eligible };
 }
 
 function render(){
@@ -792,7 +871,7 @@ function render(){
   }
 
   renderMembers(monthRange);
-  renderKas();
+  renderKas(stats);
   renderEligibleGrid(stats);
 
   document.getElementById('reportTotalMasuk').textContent = formatRp(stats.totalMasuk + config.saldoAwal);
@@ -809,65 +888,163 @@ function renderMembers(monthRange){
   list.innerHTML = '';
   document.getElementById('memberCount').textContent = members.length;
   const currentMonth = getCurrentMonthKey();
+  const currentYear = new Date().getFullYear();
+  const prevYear = currentYear - 1;
   const hintText = document.getElementById('hintText');
+  const summaryBar = document.getElementById('arrearsSummaryBar');
+
   if (members.length === 0){
     hintText.style.display = 'none';
+    summaryBar.classList.add('hidden');
     list.innerHTML = '<div style="text-align:center;padding:20px;color:#a1a1aa;font-size:12px">Belum ada anggota</div>';
     return;
-  } else { hintText.style.display = 'block'; }
+  } else {
+    hintText.style.display = 'block';
+  }
+
+  let groupArrearsMonths = 0;
+  let groupArrearsAmount = 0;
 
   members.forEach(m=>{
-    const paidThisMonth = transactions.some(t=>t.type==='masuk' && t.monthKey===currentMonth && t.memberId===m.id);
+    const arrears = getMemberArrears(m.id, monthRange);
+    groupArrearsMonths += arrears.totalUnpaidCount;
+    groupArrearsAmount += arrears.totalUnpaidAmount;
+
+    const paidThisMonth = arrears.paidKeys.has(currentMonth);
     const isExpanded = expandedMembers.has(m.id);
-    const statusText = paidThisMonth ? `✅ Sudah bayar ${monthNames[new Date().getMonth()]}` : '⏳ Belum bayar';
+    const hasPrevArrears = arrears.prevUnpaid.length > 0;
+    const hasCurrArrears = arrears.currUnpaid.length > 0;
+
+    // Susun pills status & peringatan tunggakan
+    let pillsHtml = '';
+    if (hasPrevArrears){
+      const prevNom = arrears.prevUnpaid.length * (config.iuranPerBulan || 10000);
+      pillsHtml += `<span class="pill pill-arrears-prev">⚠️ Tunggakan ${prevYear}: ${arrears.prevUnpaid.length} bln (${formatRp(prevNom)})</span>`;
+    }
+    if (hasCurrArrears){
+      pillsHtml += `<span class="pill pill-arrears-curr">⏳ Tunggakan ${currentYear}: ${arrears.currUnpaid.length} bln</span>`;
+    }
+    if (!hasPrevArrears && !hasCurrArrears){
+      pillsHtml += `<span class="pill pill-ok">✅ Lunas s.d. ${monthShort[new Date().getMonth()]}</span>`;
+    } else if (paidThisMonth) {
+      pillsHtml += `<span class="pill pill-ok">✓ ${monthShort[new Date().getMonth()]} Lunas</span>`;
+    }
+    if (m.sudahDapat){
+      pillsHtml += `<span class="pill pill-doorprize">🎁 Doorprize</span>`;
+    }
 
     const item = document.createElement('div');
-    item.className = 'member-item' + (isExpanded ? ' expanded' : '');
+    item.className = 'member-item' + (isExpanded ? ' expanded' : '') + (hasPrevArrears ? ' has-prev-arrears' : '');
 
     const header = document.createElement('div');
     header.className = 'member-header';
     header.innerHTML = `
-      <div class="member-avatar">${m.name.charAt(0).toUpperCase()}</div>
+      <div class="member-avatar ${hasPrevArrears ? 'warn' : ''}">${m.name.charAt(0).toUpperCase()}</div>
       <div class="member-info">
-        <div class="member-name">${escapeHtml(m.name)}</div>
-        <div class="member-status">
-          <span>${statusText}</span>
-          ${m.sudahDapat ? '<span class="member-doorprize-badge">SUDAH DAPAT DOORPRIZE</span>' : ''}
+        <div class="member-name-row">
+          <span class="member-name">${escapeHtml(m.name)}</span>
         </div>
+        <div class="member-pills">${pillsHtml}</div>
       </div>
-      <label class="checkbox-wrap" onclick="event.stopPropagation()">
-        <input type="checkbox" ${m.sudahDapat ? 'checked' : ''} onchange="toggleDoorprize('${m.id}', this.checked)">
-        Dapat
-      </label>
-      <button class="delete-btn" onclick="event.stopPropagation();deleteMember('${m.id}')" title="Hapus">
-        <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
-      </button>
-      <div class="member-chevron ${isExpanded ? 'rotated' : ''}">
-        <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      <div class="member-actions">
+        <label class="checkbox-wrap" onclick="event.stopPropagation()">
+          <input type="checkbox" ${m.sudahDapat ? 'checked' : ''} onchange="toggleDoorprize('${m.id}', this.checked)">
+          Dapat
+        </label>
+        <button class="delete-btn" onclick="event.stopPropagation();deleteMember('${m.id}')" title="Hapus">
+          <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+        </button>
+        <div class="member-chevron ${isExpanded ? 'rotated' : ''}">
+          <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
       </div>`;
     header.addEventListener('click', ()=>toggleExpandMember(m.id));
 
     const monthContainer = document.createElement('div');
     monthContainer.className = 'month-grid-container' + (isExpanded ? ' open' : '');
+
     if (isExpanded){
-      const monthGrid = document.createElement('div');
-      monthGrid.className = 'month-grid';
-      monthRange.forEach(mk=>{
-        const sudahBulan = transactions.some(t=>t.type==='masuk' && t.memberId===m.id && t.monthKey===mk.key);
-        const btn = document.createElement('button');
-        btn.className = 'month-btn' + (sudahBulan ? ' paid' : '') + (mk.isCurrent ? ' current' : '');
-        btn.title = `${monthNames[mk.month-1]} ${mk.year}`;
-        btn.innerHTML = `<div class="month-btn-label">${mk.label}</div><div class="month-btn-check">${sudahBulan ? '✓' : '–'}</div>`;
-        btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleBayarBulan(m.id, mk.key); });
-        monthGrid.appendChild(btn);
+      // 1) Render Tahun Sebelumnya (n-1) HANYA jika ada tunggakan ATAU user membuka riwayat lunas
+      arrears.prevYearsList.forEach(yrObj => {
+        const yrHasUnpaid = yrObj.unpaid.length > 0;
+        const historyKey = `${m.id}-${yrObj.year}`;
+        const isHistoryShown = showLunasHistory.has(historyKey);
+
+        if (yrHasUnpaid || isHistoryShown) {
+          const sec = document.createElement('div');
+          sec.className = 'year-section';
+          sec.innerHTML = `
+            <div class="year-section-header">
+              <span class="year-section-title">📅 Tahun ${yrObj.year}</span>
+              <span class="year-section-badge ${yrHasUnpaid ? 'red' : 'green'}">
+                ${yrHasUnpaid ? `Tunggakan ${yrObj.unpaid.length} bln • ${formatRp(yrObj.unpaid.length * config.iuranPerBulan)}` : 'Lunas 100% ✓'}
+              </span>
+            </div>`;
+          const grid = document.createElement('div');
+          grid.className = 'month-grid';
+          yrObj.months.forEach(mk => {
+            const btn = document.createElement('button');
+            btn.className = 'month-btn' + (mk.isPaid ? ' paid' : ' arrears');
+            btn.title = `${monthNames[mk.month-1]} ${mk.year}`;
+            btn.innerHTML = `<div class="month-btn-label">${mk.label}</div><div class="month-btn-check">${mk.isPaid ? '✓' : '!'}</div>`;
+            btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleBayarBulan(m.id, mk.key); });
+            grid.appendChild(btn);
+          });
+          sec.appendChild(grid);
+          monthContainer.appendChild(sec);
+        } else {
+          // Tahun lalu sudah lunas -> tampilkan tombol ringkas agar tidak menumpuk
+          const histBtn = document.createElement('button');
+          histBtn.className = 'toggle-history-btn';
+          histBtn.textContent = `📁 Lihat riwayat ${yrObj.year} (Sudah Lunas ✓)`;
+          histBtn.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            showLunasHistory.add(historyKey);
+            render();
+          });
+          monthContainer.appendChild(histBtn);
+        }
       });
-      monthContainer.appendChild(monthGrid);
+
+      // 2) Render Tahun Berjalan (n)
+      const currMonths = monthRange.filter(mk => mk.year === currentYear);
+      const currSec = document.createElement('div');
+      currSec.className = 'year-section';
+      currSec.innerHTML = `
+        <div class="year-section-header">
+          <span class="year-section-title">📅 Tahun ${currentYear} (Berjalan)</span>
+          <span class="year-section-badge ${hasCurrArrears ? 'orange' : 'green'}">
+            ${hasCurrArrears ? `Tunggakan ${arrears.currUnpaid.length} bln` : 'Lunas s.d. Bulan Ini ✓'}
+          </span>
+        </div>`;
+      const currGrid = document.createElement('div');
+      currGrid.className = 'month-grid';
+      currMonths.forEach(mk => {
+        const sudahBulan = arrears.paidKeys.has(mk.key);
+        const isArrears = !sudahBulan && mk.key <= currentMonth;
+        const btn = document.createElement('button');
+        btn.className = 'month-btn' + (sudahBulan ? ' paid' : (isArrears ? ' arrears' : '')) + (mk.isCurrent ? ' current' : '');
+        btn.title = `${monthNames[mk.month-1]} ${mk.year}`;
+        btn.innerHTML = `<div class="month-btn-label">${mk.label}</div><div class="month-btn-check">${sudahBulan ? '✓' : (isArrears ? '!' : '–')}</div>`;
+        btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleBayarBulan(m.id, mk.key); });
+        currGrid.appendChild(btn);
+      });
+      currSec.appendChild(currGrid);
+      monthContainer.appendChild(currSec);
     }
 
     item.appendChild(header);
     item.appendChild(monthContainer);
     list.appendChild(item);
   });
+
+  if (groupArrearsMonths > 0){
+    summaryBar.classList.remove('hidden');
+    document.getElementById('arrearsSummaryText').textContent = `Total piutang iuran (${groupArrearsMonths} bulan tertunggak)`;
+    document.getElementById('arrearsSummaryVal').textContent = formatRp(groupArrearsAmount);
+  } else {
+    summaryBar.classList.add('hidden');
+  }
 }
 
 function toggleExpandMember(id){
@@ -876,8 +1053,8 @@ function toggleExpandMember(id){
 }
 
 // ============ KAS: STATCARD + BREAKDOWN + FILTER ============
-function renderKas(){
-  // 1) Statcard & breakdown SELALU semua waktu (biar saldo jelas asal-usulnya)
+function renderKas(stats){
+  const currentYear = Number(getCurrentYear());
   const masukAll = transactions.filter(t=>t.type==='masuk');
   const keluarAll = transactions.filter(t=>t.type==='keluar');
   const totalMasuk = masukAll.reduce((s,t)=>s+(t.amount||0),0);
@@ -888,12 +1065,13 @@ function renderKas(){
   document.getElementById('kasCountMasuk').textContent = masukAll.length + ' transaksi';
   document.getElementById('kasCountKeluar').textContent = keluarAll.length + ' transaksi';
 
+  document.getElementById('bdCarryLabel').textContent = `Saldo Awal ${currentYear} (Sisa Akhir ${currentYear - 1})`;
+  document.getElementById('bdCarryAmount').textContent = formatRp(stats ? stats.saldoCarryOver : 0);
   document.getElementById('bdMasuk').textContent = formatRp(totalMasuk);
   document.getElementById('bdSaldoAwal').textContent = formatRp(config.saldoAwal);
   document.getElementById('bdKeluar').textContent = '− ' + formatRp(totalKeluar);
   document.getElementById('bdSaldo').textContent = formatRp(totalMasuk + config.saldoAwal - totalKeluar);
 
-  // 2) Isi opsi tahun (dinamis dari data)
   const years = new Set();
   transactions.forEach(t=>{
     const k = txMonthKey(t);
@@ -906,7 +1084,6 @@ function renderKas(){
   yearSel.value = kasFilter.tahun;
   if (yearSel.value !== kasFilter.tahun){ kasFilter.tahun = 'all'; yearSel.value = 'all'; }
 
-  // 3) Terapkan filter ke list
   const filtered = transactions.filter(t=>{
     if (kasFilter.jenis !== 'semua' && t.type !== kasFilter.jenis) return false;
     const k = txMonthKey(t) || '';
@@ -924,7 +1101,6 @@ function renderKas(){
     `<span>${filtered.length} transaksi</span> • <span>Masuk <b class="green">${formatRp(fMasuk)}</b></span> • <span>Keluar <b class="red">${formatRp(fKeluar)}</b></span>` +
     (filterActive ? ` <button class="filter-reset" onclick="resetKasFilter()">✕ Reset filter</button>` : '');
 
-  // 4) Render list
   const listEl = document.getElementById('kasList');
   listEl.innerHTML = '';
   if (filtered.length === 0){
@@ -941,7 +1117,7 @@ function renderKas(){
       </div>
       <div class="kas-info">
         <div class="kas-note">${escapeHtml(t.note)}</div>
-        <div class="kas-meta">${t.date} • ${t.monthKey || ''}</div>
+        <div class="kas-meta">${t.date}${t.monthKey ? ' • Bulan ' + t.monthKey : ''}</div>
       </div>
       <div class="kas-amount-wrap">
         <div class="kas-amount ${t.type}">${formatRp(t.amount)}</div>
@@ -955,12 +1131,12 @@ function resetKasFilter(){
   kasFilter = { jenis:'semua', bulan:'all', tahun:'all' };
   document.getElementById('filterJenis').value = 'semua';
   document.getElementById('filterBulan').value = 'all';
-  renderKas();
+  renderKas(calcStats());
 }
 
-document.getElementById('filterJenis').addEventListener('change', e=>{ kasFilter.jenis = e.target.value; renderKas(); });
-document.getElementById('filterBulan').addEventListener('change', e=>{ kasFilter.bulan = e.target.value; renderKas(); });
-document.getElementById('filterTahun').addEventListener('change', e=>{ kasFilter.tahun = e.target.value; renderKas(); });
+document.getElementById('filterJenis').addEventListener('change', e=>{ kasFilter.jenis = e.target.value; renderKas(calcStats()); });
+document.getElementById('filterBulan').addEventListener('change', e=>{ kasFilter.bulan = e.target.value; renderKas(calcStats()); });
+document.getElementById('filterTahun').addEventListener('change', e=>{ kasFilter.tahun = e.target.value; renderKas(calcStats()); });
 
 function renderEligibleGrid(stats){
   const grid = document.getElementById('eligibleGrid');
@@ -989,14 +1165,14 @@ function closeModal(id){ document.getElementById(id).classList.remove('show'); }
 
 document.getElementById('btnSettings').addEventListener('click', ()=>{
   document.getElementById('inputGroupName').value = config.groupName || '';
-  document.getElementById('inputIuran').value = config.iuranPerBulan || 0;
+  document.getElementById('inputIuran').value = config.iuranPerBulan || 10000;
   document.getElementById('inputSaldo').value = config.saldoAwal || 0;
   document.getElementById('inputBulanAwal').value = config.bulanAwal || getCurrentMonthKey();
   openModal('modalSettings');
 });
 function saveSettings(){
   config.groupName = document.getElementById('inputGroupName').value.trim();
-  config.iuranPerBulan = Number(document.getElementById('inputIuran').value) || 0;
+  config.iuranPerBulan = Number(document.getElementById('inputIuran').value) || 10000;
   config.saldoAwal = Number(document.getElementById('inputSaldo').value) || 0;
   config.bulanAwal = document.getElementById('inputBulanAwal').value || getCurrentMonthKey();
   saveData(); render(); closeModal('modalSettings'); showHeroToast('Pengaturan disimpan ✓');
@@ -1081,7 +1257,16 @@ function toggleBayarBulan(memberId, monthKey){
   if (existing){
     transactions = transactions.filter(t=>t.id!==existing.id);
   } else {
-    transactions.unshift({ id:Date.now().toString(), type:'masuk', amount:config.iuranPerBulan, date:getToday(), memberId, monthKey, note:'Iuran ' + monthKey });
+    const isPrevYear = monthKey.slice(0,4) < getCurrentYear();
+    transactions.unshift({
+      id: Date.now().toString(),
+      type: 'masuk',
+      amount: config.iuranPerBulan || 10000,
+      date: getToday(),
+      memberId,
+      monthKey,
+      note: (isPrevYear ? 'Pelunasan Tunggakan ' : 'Iuran ') + monthKey
+    });
   }
   saveData(); render();
 }
@@ -1138,17 +1323,20 @@ document.getElementById('btnExport').addEventListener('click', ()=>{
   let report = `LAPORAN ${(config.groupName || 'IURAN').toUpperCase()}\n`;
   report += `Periode: ${year}\n`;
   report += `Bulan Mulai: ${config.bulanAwal || 'Tidak diset'}\n`;
+  report += `Saldo Awal ${year} (Sisa ${Number(year)-1}): ${formatRp(stats.saldoCarryOver)}\n`;
   report += `Saldo Kas Saat Ini: ${formatRp(stats.saldo)}\n`;
   report += `  = Pemasukan ${formatRp(stats.totalMasuk)} + Saldo Awal ${formatRp(config.saldoAwal)} - Pengeluaran ${formatRp(stats.totalKeluar)}\n`;
   report += `Terkumpul Tahun Ini: ${formatRp(stats.terkumpulTahunIni)}\n`;
   report += `Keluar Tahun Ini: ${formatRp(stats.keluarTahunIni)}\n`;
   report += `Anggota: ${members.length} orang\n\n`;
-  report += `=== DAFTAR ANGGOTA & STATUS BAYAR ===\n`;
+  report += `=== DAFTAR ANGGOTA & STATUS TUNGGAKAN ===\n`;
   const monthRange = getMonthRange();
   members.forEach(m=>{
+    const arrears = getMemberArrears(m.id, monthRange);
     report += `\n${m.name}${m.sudahDapat ? ' (SUDAH DAPAT DOORPRIZE)' : ''}\n`;
+    report += `  Tunggakan Tahun Lalu: ${arrears.prevUnpaid.length} bln | Tunggakan ${year}: ${arrears.currUnpaid.length} bln\n`;
     monthRange.forEach(mk=>{
-      const sudah = transactions.some(t=>t.type==='masuk' && t.memberId===m.id && t.monthKey===mk.key);
+      const sudah = arrears.paidKeys.has(mk.key);
       report += `  ${monthNames[mk.month-1]} ${mk.year}: ${sudah ? '✓ Lunas' : '— Belum'}\n`;
     });
   });
@@ -1188,6 +1376,7 @@ document.getElementById('importInput').addEventListener('change', e=>{
       members = data.members;
       transactions = data.transactions;
       expandedMembers.clear();
+      showLunasHistory.clear();
       saveData(); render();
       showHeroToast('Data berhasil diimport! ✓');
       alert(`Import berhasil!\n\nKelompok: ${config.groupName || '-'}\nAnggota: ${members.length}\nTransaksi: ${transactions.length}`);
