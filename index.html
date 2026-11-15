@@ -22,7 +22,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .hero{position:relative;width:100%;height:34vh;min-height:300px;max-height:380px;overflow:hidden}
 .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.1),transparent,rgba(0,0,0,0.25))}
-.hero-toast{position:absolute;top:68px;left:50%;transform:translateX(-50%);z-index:20;background:#0f172a;color:white;font-size:12px;font-weight:500;padding:8px 16px;border-radius:9999px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);display:none}
+.hero-toast{position:absolute;top:68px;left:50%;transform:translateX(-50%);z-index:20;background:#0f172a;color:white;font-size:12px;font-weight:500;padding:8px 16px;border-radius:9999px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);display:none;white-space:nowrap}
 .hero-toast.show{display:block}
 .saldo-section{padding:0 20px;margin-top:-40px;position:relative;z-index:10}
 .saldo-card{border-radius:26px;padding:20px 20px 16px;box-shadow:0 20px 40px rgba(6,95,70,0.25);border:1px solid rgba(255,255,255,0.25);overflow:hidden;position:relative;background:rgba(6,95,70,0.75);backdrop-filter:blur(18px)}
@@ -96,53 +96,88 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .activity-amount.masuk{color:#065f46}
 .activity-amount.keluar{color:#dc2626}
 
-/* ANGGOTA & TUNGGAKAN PILLS */
-.arrears-summary-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;padding:10px 12px;border-radius:14px;background:#fef2f2;border:1px solid #fecaca;align-items:center;justify-content:space-between}
-.arrears-summary-text{font-size:11px;color:#991b1b;font-weight:600}
-.arrears-summary-val{font-size:12px;font-weight:800;color:#dc2626}
-.member-item{padding:12px;border-radius:16px;background:#fdf6ec;border:1px solid rgba(0,0,0,0.04);margin-bottom:10px;overflow:hidden;transition:box-shadow 0.2s}
-.member-item.has-prev-arrears{border-color:#fca5a5;background:#fffaf9}
-.member-item.expanded{box-shadow:0 4px 12px rgba(6,95,70,0.08)}
-.member-header{display:flex;align-items:flex-start;gap:10px;cursor:pointer;user-select:none;padding:2px 0}
-.member-header:active{opacity:0.75}
-.member-avatar{width:36px;height:36px;border-radius:50%;background:#065f46;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;margin-top:2px}
-.member-avatar.warn{background:#dc2626}
-.member-info{flex:1;min-width:0}
-.member-name-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px}
-.member-name{font-size:13px;font-weight:700;color:#0f172a}
-.member-pills{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.pill{padding:2px 8px;border-radius:9999px;font-size:10px;font-weight:700;line-height:1.4;display:inline-flex;align-items:center;gap:3px}
-.pill-arrears-prev{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5}
-.pill-arrears-curr{background:#ffedd5;color:#c2410c;border:1px solid #fdba74}
-.pill-ok{background:#dcfce7;color:#15803d}
-.pill-pending{background:#f4f4f5;color:#52525b}
-.pill-doorprize{background:#fef3c7;color:#b45309}
-.member-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
-.checkbox-wrap{display:flex;align-items:center;gap:4px;font-size:10px;color:#71717a;font-weight:600}
-.delete-btn{width:26px;height:26px;border-radius:50%;background:white;border:1px solid #e4e4e7;display:flex;align-items:center;justify-content:center;cursor:pointer}
+/* REDESIGNED ANGGOTA CARD (TACTILE LEDGER STYLE) */
+.arrears-summary-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;padding:11px 14px;border-radius:14px;background:#fef2f2;border:1px solid #fecaca}
+.arrears-summary-left{display:flex;align-items:center;gap:8px}
+.arrears-dot{width:8px;height:8px;border-radius:50%;background:#dc2626;flex-shrink:0}
+.arrears-summary-text{font-size:11px;color:#991b1b;font-weight:600;line-height:1.3}
+.arrears-summary-val{font-size:13px;font-weight:800;color:#dc2626;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.member-item{border-radius:18px;background:#fdf6ec;border:1px solid rgba(15,23,42,0.07);margin-bottom:12px;overflow:hidden;transition:box-shadow 0.2s,border-color 0.2s}
+.member-item.has-prev-arrears{background:#fffdfb;border-color:#fca5a5}
+.member-item.expanded{box-shadow:0 8px 24px rgba(15,23,42,0.07);border-color:rgba(6,95,70,0.28)}
+
+.member-top{display:flex;align-items:center;gap:12px;padding:12px 12px 10px;cursor:pointer;user-select:none}
+.member-top:active{opacity:0.82}
+
+.avatar-wrap{position:relative;width:44px;height:44px;flex-shrink:0;cursor:pointer}
+.member-avatar{width:44px;height:44px;border-radius:50%;background:#065f46;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;overflow:hidden;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+.member-avatar.warn{background:#b91c1c}
+.member-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar-cam-badge{position:absolute;right:-2px;bottom:-2px;width:18px;height:18px;border-radius:50%;background:#0f172a;color:white;border:1.5px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.avatar-cam-badge svg{width:10px;height:10px;stroke:white;fill:none;stroke-width:2.2}
+
+.member-identity{flex:1;min-width:0}
+.member-name{font-size:14px;font-weight:700;color:#0f172a;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.member-subline{font-size:11px;color:#64748b;margin-top:2px;font-weight:500;font-variant-numeric:tabular-nums}
+.member-subline.danger{color:#b91c1c;font-weight:600}
+.member-subline.ok{color:#065f46;font-weight:600}
+
+.member-controls{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.dp-toggle{display:inline-flex;align-items:center;gap:4px;padding:5px 9px;border-radius:9999px;border:1px solid #e4e4e7;background:white;color:#71717a;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.15s}
+.dp-toggle.won{background:#fef3c7;border-color:#f59e0b;color:#92400e}
+.dp-toggle svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.2}
+.delete-btn{width:28px;height:28px;border-radius:50%;background:white;border:1px solid #e4e4e7;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.15s}
+.delete-btn:hover{background:#fef2f2;border-color:#fecaca}
+.delete-btn:hover svg{stroke:#dc2626}
 .delete-btn svg{width:13px;height:13px;stroke:#71717a;fill:none;stroke-width:2}
-.member-chevron{width:20px;height:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.25s ease}
-.member-chevron svg{width:16px;height:16px;stroke:#71717a;fill:none;stroke-width:2}
+.member-chevron{width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.25s ease;color:#64748b}
+.member-chevron svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2}
 .member-chevron.rotated{transform:rotate(180deg)}
 
-.month-grid-container{max-height:0;overflow:hidden;transition:max-height 0.35s ease}
-.month-grid-container.open{max-height:900px}
-.year-section{margin-top:12px;padding-top:10px;border-top:1px dashed #e4e4e7}
-.year-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+/* FULL-WIDTH STATUS LEDGER BAR */
+.member-ledger-strip{margin:0 12px 12px;border-radius:12px;overflow:hidden;border:1px solid rgba(15,23,42,0.06);background:white;display:flex;align-items:stretch;cursor:pointer}
+.ledger-cell{flex:1;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0}
+.ledger-cell + .ledger-cell{border-left:1px solid rgba(15,23,42,0.08)}
+.ledger-cell.prev-due{background:#fef2f2}
+.ledger-cell.curr-due{background:#fff7ed}
+.ledger-cell.all-clear{background:#f0fdf4;justify-content:flex-start;gap:7px}
+.ledger-k{font-size:10px;font-weight:700;letter-spacing:0.01em;white-space:nowrap}
+.ledger-cell.prev-due .ledger-k{color:#991b1b}
+.ledger-cell.curr-due .ledger-k{color:#9a3412}
+.ledger-cell.all-clear .ledger-k{color:#065f46}
+.ledger-v{font-size:11px;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger-cell.prev-due .ledger-v{color:#dc2626}
+.ledger-cell.curr-due .ledger-v{color:#ea580c}
+
+/* EXPANDED DRAWER */
+.month-grid-container{max-height:0;overflow:hidden;transition:max-height 0.35s ease;background:white;border-top:0 solid #f1f5f9}
+.month-grid-container.open{max-height:950px;border-top-width:1px;padding:4px 12px 14px}
+.photo-manage-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0 2px;font-size:11px;color:#64748b}
+.photo-link-btn{background:none;border:none;font-size:11px;font-weight:600;color:#065f46;cursor:pointer;font-family:inherit;padding:2px 4px}
+.photo-link-btn.danger{color:#dc2626}
+
+.year-section{margin-top:10px;padding-top:10px;border-top:1px dashed #e2e8f0}
+.year-section:first-child{border-top:none;padding-top:4px}
+.year-section-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
 .year-section-title{font-size:11px;font-weight:800;color:#0f172a;display:flex;align-items:center;gap:6px}
-.year-section-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:9999px}
+.year-section-right{display:flex;align-items:center;gap:6px}
+.year-section-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:9999px;font-variant-numeric:tabular-nums}
 .year-section-badge.red{background:#fee2e2;color:#b91c1c}
 .year-section-badge.orange{background:#ffedd5;color:#c2410c}
 .year-section-badge.green{background:#dcfce7;color:#15803d}
+.pay-all-yr-btn{border:none;background:#0f172a;color:white;font-size:10px;font-weight:700;padding:3px 9px;border-radius:9999px;cursor:pointer;font-family:inherit}
+.pay-all-yr-btn:hover{opacity:0.9}
+
 .month-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
-.month-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:7px 2px;border-radius:10px;font-weight:700;cursor:pointer;border:1px solid #e4e4e7;background:white;color:#a1a1aa;font-family:inherit;transition:all 0.15s}
+.month-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:7px 2px;border-radius:10px;font-weight:700;cursor:pointer;border:1px solid #e4e4e7;background:#fafafa;color:#a1a1aa;font-family:inherit;transition:all 0.15s}
 .month-btn.paid{background:#065f46;color:white;border-color:#065f46}
 .month-btn.arrears{background:#fef2f2;color:#dc2626;border-color:#fca5a5}
 .month-btn.current{box-shadow:0 0 0 2px rgba(6,95,70,0.4)}
 .month-btn-label{font-size:10px}
 .month-btn-check{font-size:10px}
-.toggle-history-btn{margin-top:10px;width:100%;padding:7px 10px;border-radius:10px;border:1px dashed #cbd5e1;background:white;color:#475569;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
-.toggle-history-btn:hover{background:#f8fafc}
+.toggle-history-btn{margin-top:10px;width:100%;padding:8px 10px;border-radius:10px;border:1px dashed #cbd5e1;background:#f8fafc;color:#475569;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit}
+.toggle-history-btn:hover{background:#f1f5f9}
 
 .kas-list{display:flex;flex-direction:column;gap:10px;max-height:60vh;overflow-y:auto;padding-right:4px}
 .kas-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;border:1px solid #f4f4f5}
@@ -159,7 +194,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .breakdown-row b{font-weight:700}
 .breakdown-row b.green{color:#065f46}
 .breakdown-row b.red{color:#dc2626}
-.breakdown-row.sub{padding-left:10px;font-size:11px;background:#f8fafc;border-radius:8px;padding:6px 10px;margin:2px 0}
+.breakdown-row.sub{font-size:11px;background:#f8fafc;border-radius:8px;padding:6px 10px;margin:2px 0}
 .breakdown-row.total{border-top:1px solid #e4e4e7;margin-top:6px;padding-top:12px;font-size:13px}
 .breakdown-row.total span{color:#0f172a;font-weight:700}
 .breakdown-note{margin-top:10px;font-size:10px;color:#a1a1aa;line-height:1.5}
@@ -177,9 +212,11 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .doorprize-title{font-weight:800;font-size:16px;margin-bottom:4px}
 .doorprize-desc{font-size:12px;color:#71717a;margin-bottom:16px}
 .eligible-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;text-align:left}
-.eligible-item{padding:10px;border-radius:12px;border:1px solid #f4f4f5;background:#fafafa;font-size:11px;opacity:0.6}
+.eligible-item{padding:10px;border-radius:12px;border:1px solid #f4f4f5;background:#fafafa;font-size:11px;opacity:0.6;display:flex;align-items:center;gap:8px}
 .eligible-item.is-eligible{background:#ecfdf5;border-color:rgba(6,95,70,0.2);opacity:1}
-.eligible-name{font-weight:600}
+.eligible-mini-avatar{width:26px;height:26px;border-radius:50%;background:#065f46;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.eligible-mini-avatar img{width:100%;height:100%;object-fit:cover}
+.eligible-name{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .eligible-status{font-size:10px}
 .report-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .report-item{padding:12px;border-radius:12px;background:#fdf6ec;border:1px solid #e4e4e7}
@@ -226,7 +263,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
 .add-member-row{display:flex;gap:8px;margin-bottom:12px}
 .add-member-input{flex:1;border-radius:9999px;border:1px solid #e4e4e7;padding:10px 16px;font-size:13px;outline:none;font-family:inherit}
 .add-member-input:focus{box-shadow:0 0 0 2px rgba(6,95,70,0.2)}
-.add-member-btn{width:40px;height:40px;border-radius:50%;background:#065f46;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.add-member-btn{width:40px;height:40px;border-radius:50%;background:#065f46;color:white;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .add-member-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
 .hint-text{font-size:10px;color:#a1a1aa;text-align:center;margin-bottom:10px}
 .btn-import{background:#f59e0b;color:#0f172a}
@@ -280,6 +317,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
     <div class="hero-overlay"></div>
     <div class="hero-toast" id="heroToast"></div>
     <input type="file" id="bgInput" accept="image/*" style="display:none">
+    <input type="file" id="memberPhotoInput" accept="image/*" style="display:none">
   </div>
 
   <div class="saldo-section">
@@ -378,15 +416,18 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
         </h3>
         <div class="add-member-row">
           <input class="add-member-input" id="newMemberName" placeholder="Nama anggota baru">
-          <button class="add-member-btn" id="btnAddMember">
+          <button class="add-member-btn" id="btnAddMember" aria-label="Tambah anggota">
             <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
           </button>
         </div>
         <div id="arrearsSummaryBar" class="arrears-summary-bar hidden">
-          <span class="arrears-summary-text" id="arrearsSummaryText">Total tunggakan aktif</span>
+          <div class="arrears-summary-left">
+            <span class="arrears-dot"></span>
+            <span class="arrears-summary-text" id="arrearsSummaryText">Total piutang iuran</span>
+          </div>
           <span class="arrears-summary-val" id="arrearsSummaryVal">Rp 0</span>
         </div>
-        <p class="hint-text" id="hintText">💡 Tap card anggota untuk kelola iuran per tahun</p>
+        <p class="hint-text" id="hintText">Tap foto untuk pasang profil • Tap kartu untuk detail bulan</p>
         <div id="memberList"></div>
       </div>
     </div>
@@ -500,7 +541,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
           <div class="report-row"><span>Keluar <span id="reportYear2">2026</span></span><b id="reportKeluar">Rp 0</b></div>
           <div class="report-row total"><span>Sisa Saldo</span><b class="report-value" id="reportSaldo">Rp 0</b></div>
         </div>
-        <button class="btn-primary dark" id="btnExport">📄 Export Laporan (TXT)</button>
+        <button class="btn-primary dark" id="btnExport">Export Laporan (TXT)</button>
         <p style="font-size:10px;color:#a1a1aa;margin-top:8px;text-align:center">Download laporan teks untuk arsip bendahara</p>
         <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e4e4e7">
           <h4 style="font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px">
@@ -509,8 +550,8 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
           </h4>
           <p style="font-size:11px;color:#71717a;margin-bottom:12px;line-height:1.5">Export data untuk backup atau kirim ke ketua/bendahara lain. Import untuk melanjutkan pencatatan dari data yang diterima.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <button class="btn-primary" id="btnExportJson">💾 Export JSON</button>
-            <button class="btn-primary btn-import" id="btnImportJson">📥 Import JSON</button>
+            <button class="btn-primary" id="btnExportJson">Export JSON</button>
+            <button class="btn-primary btn-import" id="btnImportJson">Import JSON</button>
           </div>
           <input type="file" id="importInput" accept=".json" style="display:none">
           <p style="font-size:10px;color:#a1a1aa;margin-top:8px;text-align:center">Format: iuran-backup-YYYY-MM-DD.json</p>
@@ -586,7 +627,7 @@ body{background:#fdf6ec;min-height:100vh;display:flex;justify-content:center}
           <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
           Info Penyimpanan
         </div>
-        <p class="info-box-text">Data disimpan lokal di browser (localStorage: iuran-senam-data-v3). Saldo akhir tahun n-1 otomatis menjadi saldo awal tahun n.</p>
+        <p class="info-box-text">Data disimpan lokal di browser (localStorage: iuran-senam-data-v3). Foto anggota otomatis dikompresi ringan agar hemat memori.</p>
       </div>
       <button class="btn-primary" onclick="saveSettings()">Simpan Pengaturan</button>
     </div>
@@ -706,6 +747,7 @@ let heroBg = '';
 let expandedMembers = new Set();
 let showLunasHistory = new Set();
 let kasFilter = { jenis: 'semua', bulan: 'all', tahun: 'all' };
+let activePhotoMemberId = null;
 
 const defaultHero = 'data:image/svg+xml;base64,' + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="480" height="380" viewBox="0 0 480 380"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#065f46"/><stop offset="100%" style="stop-color:#0f172a"/></linearGradient></defs><rect width="480" height="380" fill="url(#g)"/></svg>`);
 
@@ -741,7 +783,6 @@ function getMonthRange(){
   return months;
 }
 
-// Hitung tunggakan anggota: dipisah antara Tahun Lalu (n-1 & sebelumnya) dan Tahun Ini (n)
 function getMemberArrears(memberId, monthRange){
   const currentMonth = getCurrentMonthKey();
   const currentYear = new Date().getFullYear();
@@ -751,13 +792,13 @@ function getMemberArrears(memberId, monthRange){
       .map(t => t.monthKey)
   );
 
-  const prevYearsMap = {}; // { 2025: [mk, ...] }
+  const prevYearsMap = {};
   const prevUnpaid = [];
   const currUnpaid = [];
 
   monthRange.forEach(mk => {
     const isPaid = paidKeys.has(mk.key);
-    const isDue = mk.key <= currentMonth; // Hanya bulan s.d. bulan berjalan yang dihitung menunggak
+    const isDue = mk.key <= currentMonth;
     if (mk.year < currentYear) {
       if (!prevYearsMap[mk.year]) prevYearsMap[mk.year] = { year: mk.year, months: [], unpaid: [] };
       prevYearsMap[mk.year].months.push({ ...mk, isPaid, isDue });
@@ -770,13 +811,14 @@ function getMemberArrears(memberId, monthRange){
     }
   });
 
+  const rate = config.iuranPerBulan || 10000;
   return {
     paidKeys,
     prevUnpaid,
     currUnpaid,
     prevYearsList: Object.values(prevYearsMap).sort((a, b) => a.year - b.year),
     totalUnpaidCount: prevUnpaid.length + currUnpaid.length,
-    totalUnpaidAmount: (prevUnpaid.length + currUnpaid.length) * (config.iuranPerBulan || 10000)
+    totalUnpaidAmount: (prevUnpaid.length + currUnpaid.length) * rate
   };
 }
 
@@ -793,8 +835,52 @@ function loadData(){
     if (bg) heroBg = bg;
   }catch(e){ console.error('Load error', e); }
 }
-function saveData(){ localStorage.setItem(STORAGE_KEY, JSON.stringify({ config, members, transactions })); }
+function saveData(){
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ config, members, transactions }));
+  } catch(e) {
+    alert('Penyimpanan browser penuh. Coba hapus beberapa foto profil anggota atau export backup JSON.');
+  }
+}
 function saveBg(){ if (heroBg) localStorage.setItem(BG_KEY, heroBg); }
+
+// Upload & Auto-Compress Foto Profil Anggota (128x128 JPEG)
+function triggerMemberPhoto(memberId){
+  activePhotoMemberId = memberId;
+  document.getElementById('memberPhotoInput').click();
+}
+function removeMemberPhoto(memberId){
+  members = members.map(m => m.id === memberId ? { ...m, photo: '' } : m);
+  saveData(); render();
+  showHeroToast('Foto profil dihapus ✓');
+}
+document.getElementById('memberPhotoInput').addEventListener('change', e => {
+  const file = e.target.files?.[0];
+  if (!file || !activePhotoMemberId) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = new Image();
+    img.onload = () => {
+      const size = 128;
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      const minSide = Math.min(img.width, img.height);
+      const sx = (img.width - minSide) / 2;
+      const sy = (img.height - minSide) / 2;
+      ctx.drawImage(img, sx, sy, minSide, minSide, 0, 0, size, size);
+      const compressed = canvas.toDataURL('image/jpeg', 0.78);
+      members = members.map(m => m.id === activePhotoMemberId ? { ...m, photo: compressed } : m);
+      activePhotoMemberId = null;
+      saveData(); render();
+      showHeroToast('Foto anggota diperbarui ✓');
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+  e.target.value = '';
+});
 
 function calcStats(){
   const currentMonth = getCurrentMonthKey();
@@ -803,7 +889,6 @@ function calcStats(){
   const totalKeluarAll = transactions.filter(t=>t.type==='keluar').reduce((s,t)=>s+(t.amount||0),0);
   const saldo = totalMasukAll + config.saldoAwal - totalKeluarAll;
 
-  // Saldo akhir tahun n-1 = saldo awal tahun n (semua kas sebelum tahun berjalan)
   const masukSebelumTahunIni = transactions.filter(t=>t.type==='masuk' && t.date && t.date.slice(0,4) < currentYear).reduce((s,t)=>s+(t.amount||0),0);
   const keluarSebelumTahunIni = transactions.filter(t=>t.type==='keluar' && t.date && t.date.slice(0,4) < currentYear).reduce((s,t)=>s+(t.amount||0),0);
   const saldoCarryOver = config.saldoAwal + masukSebelumTahunIni - keluarSebelumTahunIni;
@@ -890,6 +975,7 @@ function renderMembers(monthRange){
   const currentMonth = getCurrentMonthKey();
   const currentYear = new Date().getFullYear();
   const prevYear = currentYear - 1;
+  const rate = config.iuranPerBulan || 10000;
   const hintText = document.getElementById('hintText');
   const summaryBar = document.getElementById('arrearsSummaryBar');
 
@@ -910,61 +996,102 @@ function renderMembers(monthRange){
     groupArrearsMonths += arrears.totalUnpaidCount;
     groupArrearsAmount += arrears.totalUnpaidAmount;
 
-    const paidThisMonth = arrears.paidKeys.has(currentMonth);
     const isExpanded = expandedMembers.has(m.id);
     const hasPrevArrears = arrears.prevUnpaid.length > 0;
     const hasCurrArrears = arrears.currUnpaid.length > 0;
+    const hasAnyArrears = hasPrevArrears || hasCurrArrears;
 
-    // Susun pills status & peringatan tunggakan
-    let pillsHtml = '';
-    if (hasPrevArrears){
-      const prevNom = arrears.prevUnpaid.length * (config.iuranPerBulan || 10000);
-      pillsHtml += `<span class="pill pill-arrears-prev">⚠️ Tunggakan ${prevYear}: ${arrears.prevUnpaid.length} bln (${formatRp(prevNom)})</span>`;
+    // Subline ringkas di bawah nama anggota
+    let sublineText = `Lunas s.d. ${monthNames[new Date().getMonth()]}`;
+    let sublineClass = 'ok';
+    if (hasAnyArrears) {
+      sublineText = `Total tunggakan: ${arrears.totalUnpaidCount} bln • ${formatRp(arrears.totalUnpaidAmount)}`;
+      sublineClass = 'danger';
     }
-    if (hasCurrArrears){
-      pillsHtml += `<span class="pill pill-arrears-curr">⏳ Tunggakan ${currentYear}: ${arrears.currUnpaid.length} bln</span>`;
+
+    // Full-width status strip di baris kedua kartu (anti terpotong)
+    let stripHtml = '';
+    if (!hasAnyArrears) {
+      stripHtml = `
+        <div class="ledger-cell all-clear">
+          <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:#065f46;fill:none;stroke-width:2.5;flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>
+          <span class="ledger-k">Tidak ada tunggakan • Lunas s.d. ${monthShort[new Date().getMonth()]} ${currentYear}</span>
+        </div>`;
+    } else {
+      if (hasPrevArrears) {
+        stripHtml += `
+          <div class="ledger-cell prev-due">
+            <span class="ledger-k">Tunggakan ${prevYear}</span>
+            <span class="ledger-v">${arrears.prevUnpaid.length} bln • ${formatRp(arrears.prevUnpaid.length * rate)}</span>
+          </div>`;
+      }
+      if (hasCurrArrears) {
+        stripHtml += `
+          <div class="ledger-cell curr-due">
+            <span class="ledger-k">Tunggakan ${currentYear}</span>
+            <span class="ledger-v">${arrears.currUnpaid.length} bln • ${formatRp(arrears.currUnpaid.length * rate)}</span>
+          </div>`;
+      }
     }
-    if (!hasPrevArrears && !hasCurrArrears){
-      pillsHtml += `<span class="pill pill-ok">✅ Lunas s.d. ${monthShort[new Date().getMonth()]}</span>`;
-    } else if (paidThisMonth) {
-      pillsHtml += `<span class="pill pill-ok">✓ ${monthShort[new Date().getMonth()]} Lunas</span>`;
-    }
-    if (m.sudahDapat){
-      pillsHtml += `<span class="pill pill-doorprize">🎁 Doorprize</span>`;
-    }
+
+    const avatarInner = m.photo
+      ? `<img src="${m.photo}" alt="${escapeHtml(m.name)}">`
+      : escapeHtml(m.name.charAt(0).toUpperCase());
 
     const item = document.createElement('div');
     item.className = 'member-item' + (isExpanded ? ' expanded' : '') + (hasPrevArrears ? ' has-prev-arrears' : '');
 
-    const header = document.createElement('div');
-    header.className = 'member-header';
-    header.innerHTML = `
-      <div class="member-avatar ${hasPrevArrears ? 'warn' : ''}">${m.name.charAt(0).toUpperCase()}</div>
-      <div class="member-info">
-        <div class="member-name-row">
-          <span class="member-name">${escapeHtml(m.name)}</span>
-        </div>
-        <div class="member-pills">${pillsHtml}</div>
+    // Baris 1: Avatar (klik = ganti foto) + Nama + Kontrol kanan
+    const topRow = document.createElement('div');
+    topRow.className = 'member-top';
+    topRow.innerHTML = `
+      <div class="avatar-wrap" onclick="event.stopPropagation();triggerMemberPhoto('${m.id}')" title="Pasang / ganti foto profil">
+        <div class="member-avatar ${hasPrevArrears ? 'warn' : ''}">${avatarInner}</div>
+        <span class="avatar-cam-badge">
+          <svg viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+        </span>
       </div>
-      <div class="member-actions">
-        <label class="checkbox-wrap" onclick="event.stopPropagation()">
-          <input type="checkbox" ${m.sudahDapat ? 'checked' : ''} onchange="toggleDoorprize('${m.id}', this.checked)">
-          Dapat
-        </label>
-        <button class="delete-btn" onclick="event.stopPropagation();deleteMember('${m.id}')" title="Hapus">
+      <div class="member-identity">
+        <div class="member-name">${escapeHtml(m.name)}</div>
+        <div class="member-subline ${sublineClass}">${sublineText}</div>
+      </div>
+      <div class="member-controls">
+        <button class="dp-toggle ${m.sudahDapat ? 'won' : ''}" onclick="event.stopPropagation();toggleDoorprize('${m.id}', ${!m.sudahDapat})" title="Status Doorprize">
+          <svg viewBox="0 0 24 24"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/></svg>
+          <span>${m.sudahDapat ? 'Dapat' : 'Belum'}</span>
+        </button>
+        <button class="delete-btn" onclick="event.stopPropagation();deleteMember('${m.id}')" title="Hapus anggota">
           <svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
         </button>
         <div class="member-chevron ${isExpanded ? 'rotated' : ''}">
           <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
         </div>
       </div>`;
-    header.addEventListener('click', ()=>toggleExpandMember(m.id));
+    topRow.addEventListener('click', ()=>toggleExpandMember(m.id));
 
+    // Baris 2: Full-width status strip
+    const stripRow = document.createElement('div');
+    stripRow.className = 'member-ledger-strip';
+    stripRow.innerHTML = stripHtml;
+    stripRow.addEventListener('click', ()=>toggleExpandMember(m.id));
+
+    // Baris 3: Drawer detail bulanan per tahun
     const monthContainer = document.createElement('div');
     monthContainer.className = 'month-grid-container' + (isExpanded ? ' open' : '');
 
     if (isExpanded){
-      // 1) Render Tahun Sebelumnya (n-1) HANYA jika ada tunggakan ATAU user membuka riwayat lunas
+      // Opsi kelola foto profil di bagian atas drawer
+      const photoBar = document.createElement('div');
+      photoBar.className = 'photo-manage-row';
+      photoBar.innerHTML = `
+        <span>Foto Profil Anggota</span>
+        <div>
+          <button class="photo-link-btn" onclick="event.stopPropagation();triggerMemberPhoto('${m.id}')">${m.photo ? 'Ganti foto' : '+ Upload foto'}</button>
+          ${m.photo ? `<button class="photo-link-btn danger" onclick="event.stopPropagation();removeMemberPhoto('${m.id}')">• Hapus</button>` : ''}
+        </div>`;
+      monthContainer.appendChild(photoBar);
+
+      // Render Tahun Sebelumnya (n-1)
       arrears.prevYearsList.forEach(yrObj => {
         const yrHasUnpaid = yrObj.unpaid.length > 0;
         const historyKey = `${m.id}-${yrObj.year}`;
@@ -975,10 +1102,13 @@ function renderMembers(monthRange){
           sec.className = 'year-section';
           sec.innerHTML = `
             <div class="year-section-header">
-              <span class="year-section-title">📅 Tahun ${yrObj.year}</span>
-              <span class="year-section-badge ${yrHasUnpaid ? 'red' : 'green'}">
-                ${yrHasUnpaid ? `Tunggakan ${yrObj.unpaid.length} bln • ${formatRp(yrObj.unpaid.length * config.iuranPerBulan)}` : 'Lunas 100% ✓'}
-              </span>
+              <span class="year-section-title">Tahun ${yrObj.year}</span>
+              <div class="year-section-right">
+                <span class="year-section-badge ${yrHasUnpaid ? 'red' : 'green'}">
+                  ${yrHasUnpaid ? `${yrObj.unpaid.length} bln • ${formatRp(yrObj.unpaid.length * rate)}` : 'Lunas ✓'}
+                </span>
+                ${yrHasUnpaid ? `<button class="pay-all-yr-btn" onclick="event.stopPropagation();lunasiTahun('${m.id}', ${yrObj.year})">Lunasi ${yrObj.year}</button>` : ''}
+              </div>
             </div>`;
           const grid = document.createElement('div');
           grid.className = 'month-grid';
@@ -993,10 +1123,9 @@ function renderMembers(monthRange){
           sec.appendChild(grid);
           monthContainer.appendChild(sec);
         } else {
-          // Tahun lalu sudah lunas -> tampilkan tombol ringkas agar tidak menumpuk
           const histBtn = document.createElement('button');
           histBtn.className = 'toggle-history-btn';
-          histBtn.textContent = `📁 Lihat riwayat ${yrObj.year} (Sudah Lunas ✓)`;
+          histBtn.textContent = `Lihat riwayat ${yrObj.year} (Sudah Lunas ✓)`;
           histBtn.addEventListener('click', (e)=>{
             e.stopPropagation();
             showLunasHistory.add(historyKey);
@@ -1006,16 +1135,18 @@ function renderMembers(monthRange){
         }
       });
 
-      // 2) Render Tahun Berjalan (n)
+      // Render Tahun Berjalan (n)
       const currMonths = monthRange.filter(mk => mk.year === currentYear);
       const currSec = document.createElement('div');
       currSec.className = 'year-section';
       currSec.innerHTML = `
         <div class="year-section-header">
-          <span class="year-section-title">📅 Tahun ${currentYear} (Berjalan)</span>
-          <span class="year-section-badge ${hasCurrArrears ? 'orange' : 'green'}">
-            ${hasCurrArrears ? `Tunggakan ${arrears.currUnpaid.length} bln` : 'Lunas s.d. Bulan Ini ✓'}
-          </span>
+          <span class="year-section-title">Tahun ${currentYear} (Berjalan)</span>
+          <div class="year-section-right">
+            <span class="year-section-badge ${hasCurrArrears ? 'orange' : 'green'}">
+              ${hasCurrArrears ? `${arrears.currUnpaid.length} bln • ${formatRp(arrears.currUnpaid.length * rate)}` : 'Lunas s.d. Bln Ini ✓'}
+            </span>
+          </div>
         </div>`;
       const currGrid = document.createElement('div');
       currGrid.className = 'month-grid';
@@ -1033,7 +1164,8 @@ function renderMembers(monthRange){
       monthContainer.appendChild(currSec);
     }
 
-    item.appendChild(header);
+    item.appendChild(topRow);
+    item.appendChild(stripRow);
     item.appendChild(monthContainer);
     list.appendChild(item);
   });
@@ -1050,6 +1182,33 @@ function renderMembers(monthRange){
 function toggleExpandMember(id){
   if (expandedMembers.has(id)) expandedMembers.delete(id); else expandedMembers.add(id);
   render();
+}
+
+function lunasiTahun(memberId, year){
+  const monthRange = getMonthRange();
+  const currentMonth = getCurrentMonthKey();
+  const rate = config.iuranPerBulan || 10000;
+  const dueMonths = monthRange.filter(mk => mk.year === year && mk.key <= currentMonth);
+  let added = 0;
+  dueMonths.forEach(mk => {
+    const exists = transactions.some(t => t.type === 'masuk' && t.memberId === memberId && t.monthKey === mk.key);
+    if (!exists) {
+      transactions.unshift({
+        id: (Date.now() + added).toString(),
+        type: 'masuk',
+        amount: rate,
+        date: getToday(),
+        memberId,
+        monthKey: mk.key,
+        note: (year < Number(getCurrentYear()) ? 'Pelunasan Tunggakan ' : 'Iuran ') + mk.key
+      });
+      added++;
+    }
+  });
+  if (added > 0){
+    saveData(); render();
+    showHeroToast(`${added} bulan tahun ${year} dilunasi ✓`);
+  }
 }
 
 // ============ KAS: STATCARD + BREAKDOWN + FILTER ============
@@ -1147,8 +1306,14 @@ function renderEligibleGrid(stats){
     item.className = 'eligible-item' + (isEligible ? ' is-eligible' : '');
     let status = 'Belum bayar / sudah dapat';
     if (m.sudahDapat) status = 'Sudah dapat';
-    else if (isEligible) status = 'Eligible ✅';
-    item.innerHTML = `<div class="eligible-name">${escapeHtml(m.name)}</div><div class="eligible-status">${status}</div>`;
+    else if (isEligible) status = 'Eligible ✓';
+    const av = m.photo ? `<img src="${m.photo}" alt="">` : escapeHtml(m.name.charAt(0).toUpperCase());
+    item.innerHTML = `
+      <div class="eligible-mini-avatar">${av}</div>
+      <div style="min-width:0">
+        <div class="eligible-name">${escapeHtml(m.name)}</div>
+        <div class="eligible-status">${status}</div>
+      </div>`;
     grid.appendChild(item);
   });
 }
@@ -1238,7 +1403,7 @@ function addMember(){
   const input = document.getElementById('newMemberName');
   const name = input.value.trim();
   if (!name) return;
-  members.push({ id: Date.now().toString(), name, sudahDapat:false, joinDate:getToday() });
+  members.push({ id: Date.now().toString(), name, photo:'', sudahDapat:false, joinDate:getToday() });
   input.value = ''; saveData(); render();
 }
 function deleteMember(id){
@@ -1301,7 +1466,7 @@ document.getElementById('btnShuffle').addEventListener('click', ()=>{
         <div class="doorprize-winner">
           <svg viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
           <div class="doorprize-winner-name">${escapeHtml(currentWinner.name)}</div>
-          <div class="doorprize-winner-label">PEMENANG! 🎉</div>
+          <div class="doorprize-winner-label">PEMENANG!</div>
         </div>
         <div class="doorprize-ping"></div>`;
       document.getElementById('shuffleText').textContent = 'Kocok';
@@ -1314,7 +1479,7 @@ function markWon(){
   if (!currentWinner) return;
   members = members.map(m=>m.id===currentWinner.id ? { ...m, sudahDapat:true } : m);
   saveData(); render(); closeModal('modalDoorprize');
-  showHeroToast(currentWinner.name + ' mendapat doorprize! 🎉');
+  showHeroToast(currentWinner.name + ' mendapat doorprize! ✓');
 }
 
 document.getElementById('btnExport').addEventListener('click', ()=>{
